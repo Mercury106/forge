@@ -1,0 +1,16 @@
+#timeline article.active .knob > div {
+  top: -1px;
+}
+
+#timeline article .knob {
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  > div {
+    width: 21px;
+    height: 21px;
+    position: relative;
+    left: 50%;
+    top: 0px;
+  }
+}

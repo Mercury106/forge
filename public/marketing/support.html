@@ -1,0 +1,68 @@
+<!-- $title Support -->
+
+<!-- @include _header -->
+
+  <!-- Title -->
+  <header id="title">
+    <hgroup>
+      <a href="/"><strong id="logo">Forge</strong></a>
+      <h1><!-- $title --></h1>
+      <p>Get tips or get get help</p>
+      <!-- @include _signup -->
+    </hgroup>
+  </header>
+  
+  <!-- Docs -->
+  <section id="docs" class="grade">
+    <div class="wrap">
+    
+      <hgroup>
+        <h1>There are a few tricks to using Forge.</h1>
+        <p>Read this page for more information, tips and tricks and how to get the most out of our service.</p>
+      </hgroup>
+      
+      <article>
+        <h2>TurboJS tips</h2>
+        <p><strong>Put your Javascripts in the &lt;head> element.</strong></p>
+        <p>TurboJS is a brand-new javascript library developed in collaboration with <a href="http://twitter.com/maccaw">Alex MacCaw</a>. TurboJS is a unique new engine, designed to serve all your site's pages in the background - making your site super, duper, extra fast.</p>
+      </article>
+  
+      <article>
+        <h2>General tips</h2>
+        <p><strong>Concatenate your stylesheets and javascripts</strong></p>
+        <p>Got a bunch of stylesheets? Put them all together to make them extra speedy. This means fewer HTTP requests, which means less overhead for your users, and faster-loading pages.</p>
+  
+        <div class="example">
+          <code class="before">
+            <pre>
+  &lt;link href="normalize.css" />
+  &lt;link href="style.css" />
+  &lt;link href="pages.css" />
+  &lt;link href="buttons.css" /></pre>
+          </code>
+          <code class="after">
+            <pre>
+  &lt;link href="public.css" /></pre>
+          </code>
+        </div>
+  
+        <p class="info">If you're using <a href="http://hammerformac.com">Hammer for Mac</a>, remember to build with "Optimized" mode enabled.</p>
+      </article>
+      
+    </div>
+  </section>
+  
+  <!-- Email -->
+  <section id="support" class="grade">
+    <div class="wrap">
+    
+      <hgroup>
+        <h1>Contact our support team if you have any queries about Forge.</h1>
+        <p>We'll be happy to respond to any problems you encounter and aim to reply as soon as we can.</p>
+        <p><a href="mailto:support@riothq.com" class="button green">Email Support</a></p>
+      </hgroup>
+        
+    </div>
+  </section>
+  
+<!-- @include _footer -->

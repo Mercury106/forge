@@ -1,0 +1,63 @@
+<section id="sidebar">
+
+  <header>
+    <strong id="forge-logo">{{#link-to 'sites.index' classBinding='isOnHomePage:pressed'}}<b>Forge</b>{{/link-to}}</strong>
+  </header>
+
+  <nav {{bind-attr class="view.isAddingANewSite:hide"}}>
+
+    <div id="user-bar">
+      {{#if session.isLoaded}}
+        {{#with session}}
+          {{#link-to 'account.settings'}}
+            <div {{bind-attr class='controller.accountSelected:selected :user'}}>
+              {{view App.AvatarView emailBinding="email"}}
+              <b>{{name}}</b>
+            </div>
+          {{/link-to}}
+        {{/with}}
+      {{else}}
+        {{view App.SpinnerView color="#fff"}}
+      {{/if}}
+    </div>
+
+    <h4>
+      Your Sites
+      {{#if unlimited}}
+        <em><span>Unlimited</span></em>
+      {{else}}
+        {{#if maxSites}}
+          <em><span>{{sites.length}}/{{maxSites}}</span></em>
+        {{/if}}
+      {{/if}}
+    </h4>
+
+    <ul>
+      {{#if sitesAreLoaded}}
+        {{#if content}}
+          {{#each content}}
+            {{view App.SiteListItemView contentBinding="this" selectedSiteBinding="controller.selectedSite"}}
+          {{/each}}
+        {{else}}
+          <li class="empty">
+            <em>
+              {{#if view.query}}
+                No matching sites!
+              {{else}}
+                No sites!
+              {{/if}}
+            </em>
+          </li>
+        {{/if}}
+      {{else}}
+        <li class="spinner">
+          {{view App.SpinnerView color="#fff"}}
+          <a>Loading sites...</a>
+        </li>
+      {{/if}}
+
+      <li class="add-site"><a {{action showNewSiteModal}} {{bind-attr class="view.isAddingANewSite:current"}} href="#none"><b>Add new site</b></a></li>
+    </ul>
+  </nav>
+
+</section>

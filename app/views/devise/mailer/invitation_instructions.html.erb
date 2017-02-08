@@ -1,0 +1,53 @@
+<p>Hey, <strong><%= @resource %></strong>!</p>
+
+<p>Great news - you've been invited to use Forge!</p>
+
+<p>
+  Forge is the latest Riot project, and we really hope you like it. We're trying to build the world's nicest, simplest static hosting service.
+  We're building it because we think it needs to exist - and we need your help to get there.
+</p>
+
+<p>
+  <img src="http://f.cl.ly/items/191Z220M25302z3x3b2A/favicon-f836729a884291fa1c57bed03f540469.ico" width="18" style="position: relative; top: 5px"> 
+  <a href="https://getforge.com">Forge</a> 
+  is designed to work alongside our two other apps, 
+  <img src="http://hammerformac.com/favicon.ico" width="16" style="position: relative; top: 3px"> 
+  <a href="http://hammerformac.com/">Hammer</a> and 
+  <img src="http://anvilformac.com/favicon.ico" width="16" style="position: relative; top: 3px">
+  <a href="http://anvilformac.com/">Anvil</a>, and we hope you get the chance to use all three together some day soon.
+</p>
+
+<p><img width="440" style="border-radius: 4px; margin: 0 auto" src="http://up.elliottkember.com/image/062N1C1s462N/content"></p>
+
+<p>
+  Forge is simple to use - just create a site, and upload a .ZIP file of your site. 
+  You can even drag your project onto Forge from Hammer's Export field.
+</p>
+
+<p><img width="440" style="border-radius: 4px; margin: 0 auto" src="http://up.elliottkember.com/image/101m1Q1w0g3D/Untitled-2.jpg/content.jpg"></p>
+
+<p>
+  If you don't have a .ZIP file handy, feel free to use <a href="http://up.elliottkember.com/3E140m033X45/Forge%20Sample%20Project.zip">this sample project</a> (58KB).
+</p>
+
+<p>
+  To get started, you can use <strong>yoursitename.getforge.io</strong> as a testing domain. To use your own domain, point it to <strong><%= ENV['EXTERNAL_IP'] %></strong>.
+</p>
+
+<p>We'll be adding more IP addresses before we launch, but we'll be sure to let you know in advance.</p>
+
+<p>
+  <center><%= link_to 'Click here to start using Forge!', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></center>
+</p>
+
+<p>
+  We're still tweaking and fixing things, so you might encounter a few errors here and there. Please bear with us, and if you have any questions don't hesitate to <a href="mailto:contact@getforge.com">email us</a>.
+</p>
+
+<p>
+  Thanks,<br />
+  <img src="https://si0.twimg.com/profile_images/378800000072912725/79ad2ddf835af6267021dac8e3289a50_bigger.jpeg" width="16" style="border-radius: 4px; position: relative; top: 2px">
+  Elliott from 
+  <img src="https://si0.twimg.com/profile_images/3607801024/dec34bc9f7455999e46aaa02bbc8e1cc.jpeg" width="16"style="border-radius: 4px; position: relative; top: 2px">
+  Riot.
+</p>

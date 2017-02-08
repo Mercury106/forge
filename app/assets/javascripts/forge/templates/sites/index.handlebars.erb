@@ -1,0 +1,137 @@
+<header>
+  {{#unless sites}}
+    {{#if controller.sitesAreLoaded}}
+      <h1>Welcome to Forge</h1>
+    {{/if}}
+  {{else}}
+    <h1>Dashboard</h1>
+  {{/unless}}
+  <a class="show-sidebar" {{action 'toggleSidebar'}} id="show-sidebar">Show Sidebar</a>
+</header>
+
+{{#if view.showingDragHandler}}
+  <div id="dragHandler" {{bind-attr class="view.dragging:dragging"}}>
+    <div id="lines">
+      <small>Close</small>
+      <span>Drop your ZIP file to create a new version</span>
+    </div>
+  </div>
+{{/if}}
+
+<div id="content">
+
+  <section>
+
+      <nav>
+
+        {{#if sites}}
+          <ul class="homepage sites">
+
+              <h2>Your Sites</h2>
+
+              {{#each sites}}
+                <li>
+                  {{#link-to 'site.versions' this}}
+                    <span class="favicon">{{view App.FaviconView contentBinding="this"}}</span>
+                    <span class="url">{{url}}</span>
+                    <span class="bandwidth"><strong>{{bytesToSize bandwidth.today}}</strong> today, <strong>{{bytesToSize bandwidth.week}}</strong> this week</span>
+                  {{/link-to}}
+                </li>
+              {{/each}}
+            </ul>
+          {{else}}
+
+            {{#if controller.sitesAreLoaded}}
+
+              <div class="welcome">
+
+                <p>First, create a site below. Then, just zip your project up and drag it onto the site. Your site is hosted on our servers, and your assets are distributed on a CDN automatically, to give you the fastest sites on the internet.</p>
+
+                <p>&nbsp;</p>
+
+                <p>Forge uses a special script called <strong>TurboJS</strong> to cache your site, making it super fast for your users. TurboJS generates a pre-warmed cache file specifically for your site, allowing browsers to load and switch between pages insanely quickly.</p>
+
+                <p>&nbsp;</p>
+
+                <p>There are a few caveats with using TurboJS, which you should go check out on the <a href="/support" target="_blank">Support</a> page first.</p>
+
+              </div>
+            {{else}}
+              <center>{{view App.SpinnerView}}</center>
+            {{/if}}
+
+          {{/if}}
+      </nav>
+
+  </section>
+
+  {{#if controller.sitesAreLoaded}}
+    {{#if canCreate}}
+      <section>
+
+        <form {{action 'save' on='submit'}}>
+
+        {{#unless sites}}
+          <h2>Your first Forge site</h2>
+        {{else}}
+          <h2>Create a new site</h2>
+        {{/unless}}
+
+        <label>Enter the URL for your site (you can change this later)</label>
+        {{view Ember.TextField valueBinding="site.url" placeholder="my-new-site.getforge.io" classBinding="site.errors.url:error"}}
+
+        {{#if site.errors.url}}
+          <ul class="errors">
+            {{#each site.errors.url}}
+              <li class="error">This URL {{this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+
+        {{#if site.hasCustomDomain}}
+          {{#unless view.hidingInstructions}}
+            {{#if site.isValid}}
+              <p class="instructions">
+                <strong>Note:</strong> If you're using your own domain, you'll need an A record pointing to <strong><%= ENV['EXTERNAL_IP'] %></strong> first!
+              </p>
+              <p><br /></p>
+            {{/if}}
+          {{/unless}}
+        {{/if}}
+
+        {{#if site.isValid}}
+          <button {{bind-attr class=":green :large :button site.isSaving:saving :inline-submit"}} {{action 'save'}}>
+            {{#if site.isSaving}}
+              {{view App.SpinnerView color="#fff"}}
+            {{/if}}
+            <span>Create Site</span>
+          </button>
+        {{/if}}
+        </form>
+
+      </section>
+    {{else}}
+      {{#unless isPaid}}
+        <section>
+          <h2>Add Site</h2>
+          <p><b>Free Forge accounts are limited to one site only.</b></p>
+          <p>To add more than one site, you'll need to enter your billing information!</p>
+          <p>&nbsp;</p>
+          {{#link-to 'account.billing' classBinding=":button :large :green"}}
+            <span>Enter my billing information</span>
+          {{/link-to}}
+        </section>
+      {{else}}
+        <section>
+          <h2>Add Site</h2>
+          <p><b>The Basic Forge plan is limited to 5 sites.</b></p>
+          <p>To add more sites, you'll need to upgrade your plan!</p>
+          <p>&nbsp;</p>
+          {{#link-to 'account.billing' classBinding=":button :large :green"}}
+            <span>Upgrade my plan...</span>
+          {{/link-to}}
+        </section>
+      {{/unless}}
+    {{/if}}
+  {{/if}}
+</div>

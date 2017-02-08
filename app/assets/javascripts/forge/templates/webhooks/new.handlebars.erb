@@ -1,0 +1,30 @@
+<section>
+
+
+    <h1>Create Outgoing Webhook</h1>
+    <fieldset>
+      <label>Event</label>
+      <div class="selectbox">
+        <div class="selected"> Deployment Success </div>
+        <div class="selectbox-list">
+          <div class="opiton selected"> Deployment Success </div>
+          <div class="opiton"> Deployment Fail </div>
+          <div class="opiton"> Form submission </div>
+
+        </div>
+
+      </div>
+    </fieldset>
+
+</section>
+
+<div class="dismiss">
+  <a {{action 'closeModal'}} class="button large">Cancel</a>
+    <a {{bind-attr class=":button :large isSaving:saving:green" disabled="isSaving"}} {{action save}}>
+      {{#if isSaving}}
+        {{view App.SpinnerView}}
+      {{/if}}
+      <span>Add Site</span>
+    </a>
+</div>
+

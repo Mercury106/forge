@@ -1,0 +1,82 @@
+<section class="now"></section>
+
+<div id="form"></div>
+
+<script type="text/handlebars" data-template-name="login">
+<div id="modal" class="animate show">
+
+  <ul class="tabs">
+    <li class="login-tab active"><a href="#none">Log in</a></li><li class="access-tab"><a href="#none">Request early access</a></li>
+  </ul>
+
+  <div class="viewport">
+  
+    <div id="login">
+  
+      <form>
+        
+        <fieldset>
+          <label>Email:</label>
+          {{view Ember.TextField valueBinding="view.content.email"}}
+        </fieldset>
+        
+        <fieldset>
+          <label>Password:</label>
+          {{view Ember.TextField valueBinding="view.password"}}
+        </fieldset>
+        
+        <p class="remember"><input type="checkbox" name="remember_me" />  <label>Remember me</label></p>
+      
+        <fieldset class="actions">
+          <button {{action didClickSubmit}} class="button">Log in</button>
+        </fieldset>
+        
+      </form>
+          
+    </div>
+
+    <div id="access" class="hide">
+    
+      <form action="https://riot.createsend.com/t/j/s/krjjdj/" method="post" id="subForm">
+                  
+        <fieldset>
+          <label for="name">Name</label>
+          <input id="name" name="cm-name" autocomplete="off" type="text" placeholder="Your Name">
+        </fieldset>
+        
+        <fieldset>
+          <label for="krjjdj-krjjdj">Email</label>
+          <input id="krjjdj-krjjdj" autocomplete="off" name="cm-krjjdj-krjjdj" type="text" placeholder="email@email.com">
+        </fieldset>
+        
+        <p class="beta">
+          <em>Please be aware Forge is in beta</em>
+        </p>
+      
+        <fieldset class="actions">
+          <input class="button" name="commit" type="submit" value="Request access">
+        </fieldset>
+          
+      </form>
+      
+      <div class="thanks">
+      
+        <p><b>Thanks for your interest in Forge!</b></p>
+        
+        <p>We'll be in touch with you shortly.</p>
+      
+      </div>
+          
+    </div>
+        
+  </div>
+
+</div>
+
+<div id="overlay"></div>
+</script>
+
+
+<script type="text/javascript">
+  $('#overlay').show()
+</script>

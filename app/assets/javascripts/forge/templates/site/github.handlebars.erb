@@ -1,0 +1,135 @@
+<div id="site-github" {{bind-attr class=":source-section github_path:center"}}>
+  {{#unless account.isLoaded}}
+    <div class="loading">
+      {{view App.SpinnerView}}
+    </div>
+  {{else}}
+    {{#unless account.github_token}}
+      <div class="authorize">
+        <button class="github large authorize" {{action 'authenticateGitHub'}}>Authorize GitHub</button>
+        <small>Forge will only have access to the GitHub repositories you give us access to.</small>
+      </div>
+    {{else}}
+
+      {{#if githubError}}
+        <div class="error">{{githubError}}</div>
+      {{/if}}
+
+      {{#if showBrowser}}
+
+        <div id="github-browser" class="source-browser">
+          <hgroup>
+            {{#unless githubRepoPath}}
+              <h3>Choose a repo <a href="#none" {{action "hideBrowser"}} class="cancel">Cancel</a></h3>
+              <div class="nav">
+                <div class="breadcrumb">
+                  <span class="root" {{action 'backToHome'}}>Repositories</span>
+                </div>
+              </div>
+              {{view Ember.Select 
+                contentBinding="organisations" 
+                selectionBinding="selectedOrganisation"
+                optionLabelPath="content.login"
+                prompt="Organisation"
+              }}
+              {{view Ember.TextField valueBinding="view.query" type="text" name="name" placeholder="Filter"}}
+            {{else}}
+              <h3>Choose a folder to sync <a href="#none" {{action "hideBrowser"}} class="cancel">Cancel</a></h3>
+              <div class="nav">
+                <div class="breadcrumb">
+                  <span class="root" {{action backToRepositories}}>Repositories</span>
+                  <span {{action clearPath}} {{bind-attr class=":repo currentRepoIsPrivate:private:public"}}>{{githubRepoPath}}</span>
+                  {{#each pathComponents}}
+                    <span {{action setPath this}}>
+                      {{lastPathComponent this}}
+                    </span>
+                  {{/each}}
+                </div>
+                <button class="choose github" {{action 'chooseCurrentPath'}}>Choose this folder</button>
+              </div>
+              {{view Ember.TextField valueBinding="view.query" type="text" name="name" placeholder="Filter"}}
+              <div class="branch">
+                {{#if branches}}
+                  {{view Ember.Select
+                    contentBinding="branches"
+                    selectionBinding="selectedBranch"
+                    optionLabelPath="content"
+                  }}
+                {{else}}
+                  Loading branches...
+                {{/if}}
+              </div>
+            {{/unless}}
+          </hgroup>
+         
+
+          {{#if githubRepoPath}}
+
+            <ul id="github-contents">
+              {{#unless view.directories}}{{#unless files}}<div class="loading">{{view App.SpinnerView}}</div>{{/unless}}{{/unless}}
+
+              {{#each view.directories}}
+                <li {{bind-attr class="type"}}>
+                  <span class="folder">
+                    <a href="#none" {{action "selectDirectory" this}}>{{name}}</a>
+                  </span>
+                  <button {{action "choosePath" this}}>Choose folder</button>
+                </li>
+              {{/each}}
+
+              {{#each view.files}}
+                <li {{bind-attr class="type"}}>
+                  <span class="file">{{name}}</span>
+                </li>
+              {{/each}}
+            </ul>
+
+          {{else}}
+
+            {{#if view.repos}}
+               <ul id="github-contents">
+              {{#each view.repos}}
+                <li {{bind-attr class="private:private"}}>
+                  <span class="repo">
+                    <a href="#none" {{action "selectRepo" this}}>{{full_name}}</a>
+                  </span>
+                </li>
+              {{/each}}
+              </ul>
+            {{else}}
+              {{#if query}}
+                <ul id="github-contents">
+                  <li><center>No matching repositories.</center></li>
+                </ul>
+              {{else}}
+                <div class="loading">{{view App.SpinnerView}}</div>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        </div>
+      {{else}}
+        <div class="source-browser syncing">
+          <a href="#none" {{action 'resetChosenPath'}} class="github-path">{{githubRepoPath}}</a>
+          <p><b>{{url}}</b> is syncing with <b>{{github_path}}</b> 
+
+            {{#if github_branch}}
+              <span class="branch">{{github_branch}}</span>
+            {{/if}}
+          </p>
+          <button {{action "showBrowser"}}>Change GitHub Folder...</button>
+          <fieldset class="dropbox-autodeploy-checkbox">
+            <p {{ action "githubAutodeployCheck" }} >
+              {{#if content.github_autodeploy }}
+                <input type="checkbox" checked="checked" >
+              {{else}}
+                <input type="checkbox" >
+              {{/if}}
+              <span>Enable Auto-deployment</span><br>
+              <span style="margin-top:-12px;display: block;">Push to your github repository and automatically trigger a re-deployment</span>
+            </p>
+          </fieldset>
+        </div>
+      {{/if}}
+    {{/unless}}
+  {{/unless}}
+</div>

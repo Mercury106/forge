@@ -1,0 +1,50 @@
+<% content_for :header do %>
+  <hgroup class="center">
+    <a href="/"><strong id="logo">Forge</strong></a>
+    <h1>Sign Up</h1>
+    <p>Sign up for a Forge account</p>
+  </hgroup>
+<% end %>
+
+<% @hide_login = true %>
+
+  <div id="modal" class="animate show inline">
+  
+    <div class="viewport">
+  
+      <div id="register">
+  
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+          
+          <% if resource.errors.any? %>
+            <div class="errors">
+              <%= devise_error_messages! %>
+            </div>
+          <% end %>
+  
+          <fieldset>
+            <%= f.label :name %>
+            <%= f.text_field :name, :placeholder => "" %>
+          </fieldset>
+  
+          <fieldset>
+            <%= f.label :email %>
+            <%= f.email_field :email, :placeholder => "" %>
+          </fieldset>        
+        
+          <fieldset>
+            <%= f.label :password %>
+            <%= f.password_field :password, :placeholder => "" %>
+          </fieldset>
+          
+          <fieldset class="actions">
+            <button class="button">Get Started</button>
+          </fieldset>
+          
+        <% end %>
+            
+      </div>
+          
+    </div>
+  
+  </div>

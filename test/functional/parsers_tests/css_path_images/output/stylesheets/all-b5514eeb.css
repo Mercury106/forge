@@ -1,0 +1,13 @@
+.navbar-brand {
+    padding: 0;
+    width: 205px;
+    height: 50px;
+    position: relative;
+    left: -15px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: url("http://asgard-development.s3.amazonaws.com/example.com/1390764048/images/logo_350_70-f5e15170.png") #fff no-repeat;
+    background-position: 50% 50%;
+    background-size: 175px 35px
+}

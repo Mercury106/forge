@@ -1,0 +1,53 @@
+{{#if versionsLoaded}}
+  <div id="timeline">
+    
+    {{#unless dropbox_path}}
+
+      {{#if uploadError}}
+        <form class="progress">
+          <span class="progress error">{{uploadError}}</span>
+          <div class="track">
+            <div class="bar error" style="width: 100%"></div>
+          </div>
+        </form>
+      {{else}}
+        {{#if uploading}}
+          <form class="progress">
+            <span class="progress">{{percent_uploaded}}% uploaded</span>
+            <div class="track">
+              <div class="bar" {{bind-attr style="view.widthStyle"}}></div>
+            </div>
+          </form>
+        {{else}}
+          <form accept-charset="UTF-8" id="upload" enctype="multipart/form-data" action="https://<%= ENV['AWS_BUCKET'] %>.s3.amazonaws.com" method="post">
+            <input type="file" name="file" id="hidden-input" {{action "fileInputChanged" on="change" target="view"}}/>
+            <button onclick="$('#hidden-input').click(); return false;" class="icon green large">Upload ZIP</button>
+          </form>
+        {{/if}}
+      {{/if}}
+
+    {{/unless}}
+
+    {{#if shownVersions}}
+      {{#each shownVersions itemController="versionItem"}}
+        {{view App.VersionItemView contentBinding="this"}}
+      {{/each}}
+    {{else}}
+      <article class="no-versions">
+        <p>You haven't uploaded any versions of this site yet! 
+          <br />
+          To get started, <i>zip and upload</i> a folder from your computer.
+        </p>
+      </article>
+    {{/if}}
+
+    <div id="load-more" {{bind-attr class="hasNoMoreVersions:no-more-versions"}}>
+      {{#unless hasNoMoreVersions}}
+        <button {{action loadMoreVersions}} class="large">Load Earlier Versions</button>
+      {{/unless}}
+    </div>
+
+  </div>
+{{else}}
+  <div class="versions-loading center">{{view App.SpinnerView}}</div>
+{{/if}}

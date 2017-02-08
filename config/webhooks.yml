@@ -1,0 +1,20 @@
+events:
+  deploy_success:
+    id: 1
+    descrition: ""
+  deploy_failure:
+    id: 2
+    descrition: ""
+  form_submission:
+    id: 3
+    descrition: ""
+
+variables:
+  domain: "site.url"
+  version_id: "site.current_version_id"
+  version_description: "site.current_version.description"
+  added_files: "files_list('added')"
+  modified_files: "files_list('modified')"
+  deleted_files: "files_list('deleted')"
+  sync_method: "site.sync_method"
+

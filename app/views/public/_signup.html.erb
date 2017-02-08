@@ -1,0 +1,39 @@
+<div id="index-section" class="homepage-section">
+  <div id="overlay" style="display: block;"></div>
+  <div id="modal" class="animate show">
+
+  <div class="viewport">
+    <div id="register">
+
+      <%= form_for(@user, :as => :user, :url => registration_path(:user)) do |f| %>
+        
+        <%= devise_error_messages! %>
+
+        <fieldset>
+          <%= f.label :name %>
+          <%= f.text_field :name, :placeholder => "Elliott Kember" %>
+        </fieldset>
+
+        <fieldset>
+          <%= f.label :email %>
+          <%= f.email_field :email, :placeholder => "elliott@riothq.com" %>
+        </fieldset>        
+      
+        <fieldset>
+          <%= f.label :password %>
+          <% if Rails.env.development? %>
+            <%= f.password_field :password, :placeholder => "********", :value => "testing" %>
+          <% else %>
+            <%= f.password_field :password, :placeholder => "********" %>
+          <% end %>
+        </fieldset>
+        
+        <fieldset class="actions">
+          <button class="button green"><b>Get Started</b></button>
+        </fieldset>
+        
+      <% end %>
+          
+    </div>
+  </div>
+</div>

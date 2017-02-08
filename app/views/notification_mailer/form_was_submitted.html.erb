@@ -1,0 +1,21 @@
+<p>Hey, <%= @form.user.first_name %></p>
+
+<p>Your Forge Form  "<%= @form.human_name %>"  has a new response:</p>
+<ul>
+  <% @form_data.data.each do |key, value| %>
+    <li>
+      <strong><%= key.humanize.split.map(&:capitalize).join(' ') %>: </strong>
+      <%= value %>
+    </li>
+  <% end %>
+</ul>
+<p>
+  Login to view your responses <%= link_to 'here', "#{root_url}\#/#{@form.site.id}/forms" %>.
+  <br>
+  You can turn off or configure notifications for this form <%= link_to 'here', "#{root_url}\#/#{@form.site.id}/forms" %>
+</p>
+
+<p>
+  Happy Coding!<br />
+  The Forge Robot
+</p>

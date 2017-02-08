@@ -1,0 +1,24 @@
+{{#if view.editing}}
+  {{view Ember.TextField valueBinding="url"}}
+{{else}}
+  {{#link-to "site.versions" this}}
+
+    {{#if dropbox_path}}
+      <span class="dropbox">Dropbox</span>
+    {{/if}}
+
+    {{#if github_path}}
+      <span class="github">GitHub</span>
+    {{/if}}
+
+    {{#if isBeingDeployed}}
+      {{view App.SpinnerView color="#000"}}
+    {{else}}
+      {{view App.FaviconSpanView contentBinding="this"}}
+    {{/if}}
+
+    {{url}}
+
+    <small></small>
+  {{/link-to}}
+{{/if}}

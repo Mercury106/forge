@@ -1,0 +1,17 @@
+  <div id="sign">
+  <h2><%= t "devise.invitations.new.header" %></h2>
+
+  <%= form_for resource, :as => resource_name, :url => user_invitation_path, :html => {:method => :post} do |f| %>
+    <%= devise_error_messages! %>
+
+  <% resource.class.invite_key_fields.each do |field| -%>
+    <p><%= f.label field %><br />
+    <%= f.text_field field %></p>
+  <% end -%>
+
+    <fieldset class="actions">
+      <p><%= f.submit t("devise.invitations.edit.submit_button"), :class => "green button" %></p>
+    </fieldset>
+  <% end %>
+
+</div>

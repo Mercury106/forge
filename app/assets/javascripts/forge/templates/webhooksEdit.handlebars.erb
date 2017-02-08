@@ -1,0 +1,33 @@
+<section>
+
+    <h1>Create Outgoing Webhook</h1>
+    <fieldset id="event-select">
+      <h3>Method</h3>
+        {{view Ember.Select
+          contentBinding="view.methods"
+          selectionBinding="http_method"
+        }}
+      <h3>Event</h3>
+        {{view Ember.Select
+          contentBinding="view.events"
+          selectionBinding="event"
+        }}
+      <h3>URL</h3>
+      {{view Ember.TextField valueBinding="url" placeholder="Enter Webhook Url"}}
+      <h3>Parameters</h3>
+      {{view Ember.TextArea valueBinding="parameters" placeholder="key = value format e.g.
+text=site deployed successfully"}}
+    </fieldset>
+
+</section>
+
+<div class="dismiss">
+  <a {{action 'cancel'}} class="button large">Cancel</a>
+    <a {{bind-attr class=":button :large isSaving:saving:green" disabled="isSaving"}} {{action save}}>
+      {{#if isSaving}}
+        {{view App.SpinnerView}}
+      {{/if}}
+      <span>Edit Webhook</span>
+    </a>
+</div>
+

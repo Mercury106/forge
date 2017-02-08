@@ -1,0 +1,99 @@
+<header id="title">
+  <hgroup>
+    <a href="/"><strong id="logo">Forge</strong></a>
+    <h1>Support</h1>
+    <p>Make the most of Forge</p>
+    <div class="sign-up">
+      <%= link_to new_user_registration_url, :class => "register button" do %>
+        <b>Sign Up</b> for free
+      <% end %>
+      <small class="cc">Or <a href="<%= new_user_registration_path %>" class="login">Log In</a> now</small>
+    </div>
+  </hgroup>
+</header>
+
+<!-- Docs -->
+<section id="docs" class="grade">
+  <div class="wrap">
+    <hgroup>
+      <h1>Welcome to The Guild</h1>
+      <p>A creative community of web designers and developers around the world.</p>
+      <p><a href="http://guild.beach.io" class="button green">Visit The Guild</a></p>
+    </hgroup>
+    <div class="banner-wrap">
+      <span class="guild-banner"></span>
+     <!--  <ul>
+        <li>In depth discussions about product topics</li>
+        <li>Tutorials, how-to's and examples</li>
+        <li>Meet talented web developers and designers</li>
+        <li>Early access to pre-releases</li>
+        <li>Earn badges, discounts and prizes for community participation</li>
+      </ul> -->
+    </div>
+
+    <div class="contact-methods in-app">
+      <p><strong>In App Support</strong> Message us at any time directly from the Forge app. </p>
+      <a href="/signup">Register Today</a>
+    </div>
+
+    <div class="contact-methods slack">
+      <p><strong>Slack Team</strong> Chat to our team and most passionate users instantly.</p>
+      <a href="http://bit.ly/beach-slack">Join Slack</a>
+    </div>
+
+    <div class="contact-methods social">
+      <p><strong>Social Channels</strong> Send us a tweet, spread the word and tell the world.</p>
+      <a href="https://twitter.com/getforge">Follow Us</a>
+    </div>
+    
+
+  </div>
+</section>
+
+<section id="support" class="grade">
+  <div class="wrap">
+  
+     <hgroup>
+      <h1>There are a few tricks to using Forge.</h1>
+      <p>Read this page for more information, tips and tricks and how to get the most out of our service.</p>
+    </hgroup>
+    
+    <article>
+      <h2>TurboJS tips</h2>
+      <p><strong>Put your Javascripts in the &lt;head> element.</strong></p>
+      <p>TurboJS is a brand-new javascript library developed in collaboration with <a href="http://twitter.com/maccaw">Alex MacCaw</a>. TurboJS is a unique new engine, designed to serve all your site's pages in the background - making your site super, duper, extra fast.</p>
+    </article>
+
+    <article>
+      <h2>Custom Domain tips</h2>
+      <p><strong>Sometimes it's hard to get your head around DNS settings.</strong></p>
+      <p>So we've put together some instructions to help guide you through the process.
+      <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/CzZPxV" data-mode="2" target="_blank">Launch Helper</a></p>
+      <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+
+    </article>
+
+    <article>
+      <h2>General tips</h2>
+      <p><strong>Concatenate your stylesheets and javascripts</strong></p>
+      <p>Got a bunch of stylesheets? Put them all together to make them extra speedy. This means fewer HTTP requests, which means less overhead for your users, and faster-loading pages.</p>
+
+      <div class="example">
+        <code class="before">
+          <pre>
+&lt;link href="normalize.css" />
+&lt;link href="style.css" />
+&lt;link href="pages.css" />
+&lt;link href="buttons.css" /></pre>
+        </code>
+        <code class="after">
+          <pre>
+&lt;link href="public.css" /></pre>
+        </code>
+      </div>
+
+      <p class="info">If you're using <a href="http://hammerformac.com">Hammer for Mac</a>, remember to build with "Optimized" mode enabled.</p>
+    </article>
+      
+  </div>
+</section>

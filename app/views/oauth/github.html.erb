@@ -1,0 +1,5 @@
+<script>
+var token = "<%= @token %>";
+window.opener.App.__container__.lookup('controller:connections').send('githubCallback', token)
+window.close()
+</script>

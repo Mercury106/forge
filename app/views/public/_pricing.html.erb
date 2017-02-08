@@ -1,0 +1,120 @@
+<header id="title">
+  <hgroup>
+    <a href="/"><strong id="logo">Forge</strong></a>
+    <h1>Pricing</h1>
+    <p>What's it going to cost me?</p>
+    <div class="sign-up">
+      <%= link_to new_user_registration_url, :class => "register button" do %>
+        <b>Sign Up</b> for free
+      <% end %>
+      <small class="cc">Or <a href="<%= new_user_registration_path %>" class="login">Log In</a> now</small>
+    </div>
+  </hgroup>
+</header>
+
+<!-- Pricing -->
+<section id="pricing" class="grade">
+  <div class="wrap">
+
+    <hgroup>
+      <h1>Forge starts at just $10 / month</h1>
+    </hgroup>
+
+    <div class="table">
+      <ul class="zero">
+        <li><strong><b>Tin</b></strong><span class="pricing-tag hide">Free</span></li>
+        <li><em>$0</em></li>
+        <li>1 site</li>
+        <li>TurboJS Enabled</li>
+        <li>Global CDN</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class="bandwidth">1GB bandwidth / month</li>
+        <li><small>No Additional Bandwidth</small></li>
+      </ul>
+      <ul class="basic">
+        <li><strong><b>Copper</b></strong><span class="pricing-tag popular">Most Popular</span></li>
+        <li><em>$10</em></li>
+        <li>10 sites</li>
+        <li>TurboJS Enabled</li>
+        <li>Global CDN</li>
+        <li>Custom Domains</li>
+        <li>24/7 Support</li>
+        <li></li>
+        <li class="bandwidth">10GB bandwidth / month</li>
+        <li><small>Additional billed at 20&cent; / GB</small></li>
+      </ul>
+      <ul class="pro">
+        <li><strong><b>Bronze</b></strong><span class="pricing-tag rising">Rising Fast</span></li>
+        <li><em>$50</em></li>
+        <li>Unlimited Sites</li>
+        <li>TurboJS Enabled</li>
+        <li>Global CDN</li>
+        <li>Custom Domains</li>
+        <li>Priority 24/7 Support</li>
+        <li>1 Hammer License</li>
+        <li class="bandwidth">100GB bandwidth / month</li>
+        <li><small>Additional billed at 18&cent; / GB</small></li>
+      </ul>
+      <ul class="premium">
+          <li><strong><b>Iron</b></strong><span class="pricing-tag">Coming soon</span></li>
+          <li><em>$100</em></li>
+          <li>Unlimited sites</li>
+          <li>TurboJS Enabled</li>
+          <li>Global CDN</li>
+          <li>Custom Domains</li>
+          <li>Priority 24/7 Support</li>
+          <li>5 Hammer Licenses</li>
+          <li class="bandwidth">1TB bandwidth / month</li>
+          <li><small>Additional billed at 15&cent; / GB</small></li>
+        </ul>
+    </div>
+
+    <div class="cta">
+      <p>
+        <%= link_to new_user_registration_url, :class => "register button" do %>
+          <b>Sign Up</b> for a free trial with Forge
+        <% end %>
+        <small class="cc">No credit card required</small>
+      </p>
+    </div>
+
+    <div class="detail">
+      <div class="free">
+        <p>Your Forge account is billed based on how much bandwidth you use. On our basic plan, if you stay under 10GB each month, you'll only be charged the base rate of $10. Extra bandwidth over that is charged at 20¢ per gigabyte.</p>
+      </div>
+
+      <article class="left">
+        <h4>How much bandwidth will I need?</h4>
+        <p>That depends! The more images and assets your site has, the more bandwidth you'll use serving up your site.
+          The more traffic your site gets, the more bandwidth you'll use.</p>
+        <p>As a rough guide, the average bandwidth for a Forge site is about <em>1GB</em> per month. That means you could host 10 sites on our Basic plan and still not be charged for extra bandwidth. Nice!</p>
+      </article>
+
+      <article class="right">
+        <h4>How does billing work?</h4>
+        <p>Your Forge account is billed as a monthly subscription, with <b>no minimum term</b> so you can cancel, upgrade or downgrade as and when you want to.</p>
+        <p>We'll bill your payment method once a month for the base rate as indicated by the plan, along with any additional bandwidth costs you incurred during the month.</p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="try" class="sub">
+  <div class="wrap">
+
+    <div id="tweet-promo">
+      <p>
+        <span>Follow our updates on Twitter and be sure to send us your feedback!</span>
+        <a href="https://twitter.com/getforge" class="twitter-follow-button" data-show-count="false" data-size="large" data-related="getforge" data-dnt="true" >Follow @getforge</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <a href="https://twitter.com/intent/tweet?screen_name=getforge" class="twitter-mention-button" data-size="large" data-related="getforge" data-dnt="true">Tweet to @getforge</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </p>
+    </div>
+
+  </div>
+</section>

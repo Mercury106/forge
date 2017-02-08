@@ -1,0 +1,124 @@
+App.SiteSettingsRoute = Ember.Route.extend
+
+  setupController: (controller, model) ->
+    @_super()
+    controller.initializeTabs()
+    # if !controller.get('isOwner')
+    #   @transitionTo('site.versions', model)
+
+  actions:
+    error: (reason, transition) ->
+      @transitionTo('sites.index')
+
+App.SiteSettingsController = Ember.ObjectController.extend App.SitesShowMixin,
+
+  needs: ['site']
+  contentBinding: 'controllers.site.content'
+
+  # This is for the very top nav bar.
+  showingSettings: true
+
+
+  # Initialize the source tabs when the model changes.
+  initializeTabs: (->
+    if @get 'content'
+      if @get 'github_path'
+        @resetTabs 'isShowingGithub'
+      else if @get 'dropbox_path'
+        @resetTabs 'isShowingDropbox'
+      else
+        @resetTabs 'isShowingZip'
+  ).observes('content')
+
+  # Clear tab state by setting them all to false.
+  # This is called first when we show any of the three tabs.
+  resetTabs: (except) ->
+    @set 'isShowingZip', false
+    @set 'isShowingDropbox', false
+    @set 'isShowingGithub', false
+    @set(except, true) if except
+
+  isUsingDragAndDrop: (->
+    !@get('content.github_path') && !@get('content.dropbox_path')
+  ).property('content.github_path', 'content.dropbox_path')
+
+  isUsingDropbox: (->
+    @get('content.dropbox_path')
+  ).property('content.dropbox_path')
+
+  isUsingGithub: (->
+    @get('content.github_path')
+  ).property('content.github_path')
+
+  # When changing the URL on this page, we don't want the changes to be propagated everywhere until we
+  # try and save it. This accessor pre-loads the new-url text field with its default value.
+  newUrl: (->
+    @get('content.url')
+  ).property('content.url')
+
+
+  deployHook: (->
+    "<%= ENV['PRODUCTION_DOMAIN'] %>/webhook?type=redeploy&url=#{@get('content.url')}&token=#{@get('content.deploy_token')}"
+  ).property('content.hook')
+
+  # If we've changed the newUrl field, the model isn't dirty but we've made changes.
+  # So this is a quick way to enable isDirty in the template!
+  isDirty: (->
+    @get('content.isDirty') || @get('newUrl') != @get('content.url')
+  ).property('content.isDirty', 'newUrl', 'content.url')
+
+  changeNewUrlOnModelChange: (->
+    @set('newUrl', @get('content.url'))
+  ).observes('content')
+
+  actions:
+
+    # Tab button actions
+    showZip:     -> @resetTabs('isShowingZip')
+    showDropbox: -> @resetTabs('isShowingDropbox')
+    showGithub:  -> @resetTabs('isShowingGithub')
+
+
+    createNewHook: ->
+      site_id = @get('content.id')
+      @send 'showCreateHookModal', site_id
+
+    editWebhook: (hook) ->
+      @send 'showEditHookModal', hook
+
+    disableGithubAndDropbox: ->
+      @get('content').set('dropbox_path', null)
+      @get('content').set('github_path', null)
+      @get('content').save()
+
+    cancelSave: ->
+      @set 'urlErrors', false
+      @get('content').rollback()
+      @set('newUrl', @get('oldUrl'))
+      @set('content.url', @get('oldUrl'))
+
+    saveSite: ->
+      @set 'urlErrors', false
+      @set 'oldUrl', @get('content.url')
+      @get('content').set('url', @get('newUrl'))
+      @get('content').save().then =>
+        @set 'urlError', false
+        true
+      , =>
+        @get('content').rollback()
+        @set 'urlErrors', @get('content.errors.url')
+        @get('content').set('url', oldUrl)
+
+    deleteSite: (site) ->
+      @get('content').deleteRecord()
+      @get('content').save()
+      App.Router.router.transitionTo('/')
+
+    deleteWebhook: (hook) ->
+      site = hook.get('site')
+      site.get('webhook_triggers').removeObject(hook).then ->
+        hook.destroyRecord().then ->
+          site.save()
+
+      # @store.dematerializeRecord(hook)
+

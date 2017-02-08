@@ -1,0 +1,4 @@
+<div id="deploy-with-github">
+  <button class="github large authorize" {{action 'deployFromGithub'}}>Deploy from GitHub</button>
+  <p>Synced with {{#link-to 'site.settings' this classBinding=":github-path"}}{{github_path}}{{/link-to}}</p>
+</div>

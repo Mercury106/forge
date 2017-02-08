@@ -1,0 +1,145 @@
+<div id="content">
+
+  <section class="back-arrow">
+    {{#link-to "site.forms.index"}}&lt; All Forms {{/link-to}}
+  </section>
+
+{{#if dataPresented}}
+  <section class="forms">
+    <h2>Data <a {{bind-attr href=csvDownload}}><span class="csv"></span></a><!-- <span class="mailchimp"></span> --></h2>
+    <h3>Last submissions</h3>
+    <div class="data-list">
+      <div class="forms-list-header">
+        <div>
+          Timestamp
+        </div>
+      {{#each field in fields}}
+        <div>
+          {{field}}
+        </div>
+      {{/each}}
+
+
+      </div>
+
+      {{#each datum in form_data}}
+        <div class="data-list-item">
+          <div>
+            {{datum.timestamp}}
+
+          </div>
+
+          {{#each datum.data_array}}
+            <div>
+              {{this.[1]}}
+            </div>
+          {{/each}}
+        </div>
+
+      {{/each}}
+
+
+
+    </div>
+  </section>
+{{/if}}
+
+
+  <section class="forms">
+    <h2>Settings
+    <div {{bind-attr class=":typefrom_help :dark isNewUser:first-time"}}>
+        <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/gXN2Ax" data-mode="1" target="_blank"></a>
+        <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+      </div>
+    </h2>
+    <h3>Submit</h3>
+    <form>
+      <fieldset>
+        <div class="form-ajax-settings">
+          <p>
+            <label class="inline-label" {{action 'toggleAjax' bubbles=false}}>
+              {{view Ember.Checkbox checkedBinding="is_ajax_form"}}
+
+              &nbsp;
+              AJAX Submit
+            </label>
+
+            <label class="inline-label" {{action 'toggleRedirect' bubbles=false}}>
+              {{view Ember.Checkbox checkedBinding="is_redirect_to_url"}}
+              &nbsp;
+              Redirect on submit
+            </label>
+
+          </p>
+          {{#if ajax_form}}
+            <p>
+              <label>Success message for user</label>
+            </p>
+            <p>
+              {{view Ember.TextField valueBinding="ajax_message" autoselect=false placeholder="Enter your custom message here"}}
+            </p>
+          {{/if}}
+        </div>
+
+        <div class="form-redirect-settings">
+          <p>
+
+          </p>
+          {{#if redirect_to_url}}
+            <p>
+              <label>URL for redirection</label>
+            </p>
+            <p>
+             {{view Ember.TextField valueBinding="redirect_url" autoselect=false placeholder="e.g https://somewebsite.com/thankyou.html or thankyou.html"}}
+            </p>
+          {{/if}}
+        </div>
+      </fieldset>
+    </form>
+
+
+    <h3>Notifications</h3>
+    <form>
+      <fieldset>
+        <p>
+          <label>
+            {{view Ember.Checkbox checkedBinding="notifications"}}
+            &nbsp;
+            Send me notifications for new submissions
+          </label>
+        </p>
+        <p>
+          <label>
+            {{view Ember.Checkbox checkedBinding="auto_response"}}
+            &nbsp;
+            Send auto-response to people who submitted the form with an email address
+          </label>
+        </p>
+        {{#if auto_response}}
+          <h4>Create your email</h4>
+          {{view Ember.TextField valueBinding="email_address" autoselect=false placeholder="from address"}}
+          {{view Ember.TextField valueBinding="email_subject" autoselect=false placeholder="subject"}}
+
+          {{view Ember.TextArea valueBinding="email_body" autoselect=false placeholder="email body" rows="12"}}
+        {{/if}}
+      </fieldset>
+    </form>
+
+
+    <div class="actions">
+      <button {{bind-attr class="isDirty:green :button isSaving:saving" disabled="isSaving"}} {{action 'save'}}>
+        {{#if isSaving}}
+          {{view App.SpinnerView color="#fff"}}
+        {{/if}}
+        <span>Save</span>
+      </button>
+      <button {{action 'cancelSave'}}>Cancel</button>
+    </div>
+
+
+  </section>
+
+
+
+
+</div>

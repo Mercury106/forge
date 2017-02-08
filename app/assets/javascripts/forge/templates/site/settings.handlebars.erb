@@ -1,0 +1,266 @@
+<div id="content" class="settings">
+
+  {{#if isOwner}}
+    <section id="source-tabs">
+
+      <h2>How would you like to deploy 
+          <strong>{{url}}</strong>?
+        <div class="typefrom_help dark first-time">
+          <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/oZp7eW" data-mode="1" target="_blank"></a>
+        </div>
+      </h2>
+
+      <fieldset id="choose-source">
+        <div {{action "showZip"}} {{bind-attr class=":source :zip isShowingZip:selected"}}>
+          <div class="option">
+            <h4>Drag &amp; Drop</h4>
+            <div class="icon"></div>
+            {{#if isUsingDragAndDrop}}
+              <em>Using Drag &amp; Drop</em>
+            {{else}}
+              <button {{bind-attr class="isShowingZip:pressed"}}>Use Drag &amp; Drop</button>
+            {{/if}}
+          </div>
+        </div>
+        <div {{action "showDropbox"}} {{bind-attr class=":source :dropbox isShowingDropbox:selected dropbox_path:current"}}>
+          <div class="option">
+            <h4>Dropbox</h4>
+            <div class="icon"></div>
+            {{#if dropbox_path}}
+              <em>Syncing with Dropbox</em>
+            {{else}}
+              <button {{bind-attr class="isShowingDropbox:pressed"}}>Sync with Dropbox...</button>
+            {{/if}}
+          </div>
+        </div>
+        <div {{action "showGithub"}} {{bind-attr class=":source :github isShowingGithub:selected isUsingGithub:current"}}>
+          <div class='option'>
+            <h4>GitHub</h4>
+            <div class="icon"></div>
+            {{#if isUsingGithub}}
+              <em>Syncing with GitHub</em>
+            {{else}}
+              <button {{bind-attr class="isShowingGithub:pressed"}}>Sync with GitHub...</button>
+            {{/if}}
+          </div>
+        </div>
+      </fieldset>
+
+      {{#if isShowingDropbox}}
+        {{render 'site.dropbox'}}
+      {{/if}}
+
+      {{#if isShowingGithub}}
+        {{render 'site.github'}}
+      {{/if}}
+
+      <fieldset class="setup">
+        {{#if isShowingZip}}
+          {{#if isUsingDragAndDrop}}
+            <div class="source-browser syncing drag-drop">
+              <p><b>{{url}}</b> is using <b>Drag &amp; Drop</b></p>
+              <p>To create and deploy a new version of this site, just drag and drop a Zip file of your build onto the Versions timeline, or use the Upload button.</p>
+            </div>
+          {{/if}}
+
+          {{#if isUsingDropbox}}
+            <div class="please-disable">
+              <p>To switch back to Drag &amp; Drop you need to first stop syncing with Dropbox.</p>
+              <button class="button red icon delete" {{action 'disableGithubAndDropbox'}}>Stop syncing with Dropbox</button>
+            </div>
+          {{/if}}
+          {{#if github_path}}
+            <div class="please-disable">
+              <p>To switch back to Drag &amp; Drop you need to first stop syncing with GitHub.</p>
+              <button class="button red icon delete" {{action 'disableGithubAndDropbox'}}>Stop syncing with GitHub</button>
+            </div>
+          {{/if}}
+        {{/if}}
+      </fieldset>
+
+    </section>
+  {{/if}}
+
+  <section id="site-config">
+    <h2>Site Configuration</h2>
+
+    <form>
+
+      <fieldset>
+        <h3>
+          Custom Domain
+          <div class="typefrom_help dark first-time" style="float: right;">
+            <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/CzZPxV" data-mode="1" target="_blank"></a>
+          </div>  
+        </h3>
+        <p>You can use any unique subdomain name with *.getforge.io{{#if isPaid}}, or use your own domain name{{/if}}.</p>
+        <p class="instructions">
+          <strong>Note:</strong> If you're using your own domain, you'll need an A record pointing to <strong><%= ENV['EXTERNAL_IP'] %></strong> first!
+        </p>
+
+        <label>URL</label>
+        {{view Ember.TextField valueBinding="newUrl" placeholder="my-new-site.getforge.io" classBinding="errors:error" autoselect=false}}
+
+        {{#if urlErrors}}
+          <ul class="errors">
+            {{#each urlErrors}}
+              <li class="error">This URL {{this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+
+        <div class="actions">
+          <button {{bind-attr class="isDirty:green :button isSaving:saving" disabled="isSaving"}} {{action 'saveSite'}}>
+            {{#if isSaving}}
+              {{view App.SpinnerView color="#fff"}}
+            {{/if}}
+            <span>Save</span>
+          </button>
+          <button {{action 'cancelSave'}}>Cancel</button>
+        </div>
+      </fieldset>
+
+
+      <fieldset>
+        <h3>
+          WEB HOOKS 
+          <span class="badge new">NEW</span>
+          <div class="typefrom_help dark first-time" style="float: right;">
+            <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/yEIFj1" data-mode="1" target="_blank"></a>
+          </div>
+        </h3>
+
+        <h4>Incoming Hooks</h4>
+        <p>You can use the following webhook to trigger a re-deployment of your site.</p>
+        <label>URL</label>
+        {{view Ember.TextField valueBinding="deployHook" autoselect=false disabled=true}}
+
+        <h4>Outgoing Hooks <button class="green create-hook" {{action 'createNewHook'}}>New Hook</button></h4>
+        {{#if webhook_triggers.length}}
+          <div class="hooks-list">
+            <div class="hooks-list-header">
+              <div class="hook-method">Method</div>
+              <div class="hook-url">URL</div>
+              <div class="hook-event">Event</div>
+              <div class="hook-timestamp">Updated At</div>
+              <div class="delete-webhook"></div>
+            </div>
+
+
+            {{#each hook in webhook_triggers}}
+              <div class="hook" {{action "editWebhook" hook}}>
+                <div class="hook-method">{{hook.http_method}}</div>
+                <div class="hook-url">{{hook.url}}</div>
+                <div class="hook-event">{{hook.event}}</div>
+                <div class="hook-timestamp">{{hook.timestamp}}</div>
+                <div class="delete-webhook"  {{action "deleteWebhook" hook bubbles=false}}>✖</div>
+              </div>
+            {{/each}}
+          </div>
+        {{else}}
+          You haven't created any webhook yet.
+        {{/if}}
+
+
+
+      </fieldset>
+
+      <fieldset>
+        <h3>
+          Hammer Cloud 
+          <span class="badge new">BETA</span>
+          <div class="typefrom_help dark first-time" style="float: right;">
+            <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/qEBtLc" data-mode="1" target="_blank"></a>
+          </div>
+        </h3>
+
+        <p>You can upload a valid Hammer for Mac project and build it via our cloud service and deploy to Forge. Try out our Contentful integration for building a new kind of CMS.</p>
+
+        <p>
+          <label>
+            {{view Ember.Checkbox checkedBinding="hammer_enabled"}}
+            &nbsp;
+            Hammer Cloud service is currently {{#if hammer_enabled}}<strong>Enabled</strong>{{else}}Disabled{{/if}}
+          </label>
+        </p>
+
+
+
+        <p class="instructions">
+          This service is currently in BETA. Check out our support section and blog for more information on how to make the most of this exciting new feature
+        </p>
+
+        <div class="actions">
+          <button {{bind-attr class="isDirty:green :button isSaving:saving" disabled="isSaving"}} {{action 'saveSite'}}>
+            {{#if isSaving}}
+              {{view App.SpinnerView color="#fff"}}
+            {{/if}}
+            <span>Save</span>
+          </button>
+        </div>
+
+      </fieldset>
+
+      <fieldset>
+        <h3>
+          TurboJS
+          <div class="typefrom_help dark first-time" style="float: right;">
+            <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/kH3L4U" data-mode="1" target="_blank"></a>
+          </div>
+        </h3>
+        <p>
+          TurboJS is a fantastic JavaScript plugin for speeding up your site, specially designed to work with Forge.<br />
+          By stashing your site's content in JavaScript, it allows us to load your site's pages super-quickly, and lets your users navigate around your site with no delays.
+        </p>
+
+        <p>
+          However, if your site is already a JavaScript application, you can disable TurboJS to enjoy standard Forge hosting.
+        </p>
+
+        <p>
+          <label>
+            {{view Ember.Checkbox checkedBinding="squish"}}
+            &nbsp;
+            TurboJS {{#if squish}}<strong>enabled</strong>{{else}}disabled{{/if}}
+          </label>
+        </p>
+
+        <p class="instructions">
+          TurboJS is still <strong>in beta</strong>. If you experience any bugs or unexpected behaviour, please <a href="mailto:contact@getforge.com">email us</a> and we'll help out.
+        </p>
+
+        <div class="actions">
+          <button {{bind-attr class="isDirty:green :button isSaving:saving" disabled="isSaving"}} {{action 'saveSite'}}>
+            {{#if isSaving}}
+              {{view App.SpinnerView color="#fff"}}
+            {{/if}}
+            <span>Save</span>
+          </button>
+        </div>
+
+      </fieldset>
+
+
+    </form>
+  </section>
+
+  <section>
+    <h2>Delete Site</h2>
+
+    <p>
+      <button class="red icon delete" {{bind-attr class="view.showingReallyDeleteButton:pressed"}} {{action "toggleProperty" "showingReallyDeleteButton" target="view"}}>
+        {{#if view.showingReallyDeleteButton}}
+          Cancel deleting
+        {{else}}
+          Delete {{url}}
+        {{/if}}
+      </button>
+      {{#if view.showingReallyDeleteButton}}
+        <button class="red icon delete" {{action "deleteSite"}}>Really delete this site?</button>
+        <p class="warning"><strong>Warning:</strong> this cannot be undone!</p>
+      {{/if}}
+    </p>
+
+  </section>
+</div>
+<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>

@@ -1,0 +1,59 @@
+App.SiteUploadManager = Ember.Object.extend
+  
+  site: false
+  version: false
+  filename: null
+  
+  init: ->
+    @_super()
+  
+  checkDeploying: ->
+    if @get('site.percent_uploaded') > 0
+      return "You're still uploading #{@get('site.url')}"
+  
+  setPercentDeployed: (percent) ->
+    @get('version').set('percent_deployed', percent)
+  
+  createVersion: (data) ->
+    options = description: @get('filename')
+    if data.key
+      options.remote_upload_url = "https://<%= ENV['AWS_BUCKET'] %>.s3.amazonaws.com/#{data.key}"
+    @get('site').addVersion(options)
+
+  cancel: () ->
+    @set('cancelled', true)
+    console?.log "Cancel SiteUploadManager not implemented just yet."
+  
+  beforeSend: ->
+    window.onbeforeunload = () => @checkDeploying()
+    @get('site').set('uploading', true)
+  
+  uploadProgress: (percentComplete) ->
+    @get('site').set('percent_uploaded', percentComplete)
+    
+  success: (data) ->
+    @get('site').set('uploading', false)
+    @createVersion(data)
+    
+  complete: () ->
+    window.onbeforeunload = null
+    @get('site').set('percent_uploaded', 0)
+    @get('site').set('uploading', false)
+  
+  error: (e) ->
+    now = (new Date)
+    @set 'lastErrorAt', now
+    
+    if e?.responseJSON?.errors?.upload_content_type
+      @get('site').set 'uploadError', "That file was the wrong type. Only ZIP files, please!"
+    else
+      if e?.responseText?.indexOf("exceeds the maximum allowed size")
+        @get('site').set 'uploadError', "This file is too big. The maximum file size allowed is <%= ENV['MAX_SIZE_IN_MEGABYTES'] %>MB."
+      else
+        @get('site').set 'uploadError', 'There was an error uploading this file.'
+      
+    Ember.run.later =>
+      if @get('lastErrorAt') == now
+        @set('lastErrorAt', null)
+        # @get('site').set('uploadError', false)
+    , 2000

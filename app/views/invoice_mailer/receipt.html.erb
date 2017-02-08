@@ -1,0 +1,20 @@
+<%= render 'greeting' %>
+
+<p>
+  Just to let you know, your subscription to Forge has just been processed successfully. 
+  You don't need to do anything - this is only a receipt. Thank you for your continued support!
+</p>
+
+<strong>SUBSCRIPTION RECEIPT - <%= Time.now.strftime("%m/%d/%Y") %></strong>
+
+<p> 
+  Email:  <strong><%= @user.email %><br /></strong>
+  Amount: <strong>$<%= @invoice['total'] / 100 %><% if @user.charge_vat? %> including VAT<% end %></strong>
+</p>
+
+<p>For more information on your Forge invoices, please visit your <a href="https://getforge.com/#/invoices">invoices</a> page.</p>
+
+<p>
+  Thanks,<br />
+  The Forge Invoice Robot
+</p>

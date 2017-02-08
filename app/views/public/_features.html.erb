@@ -1,0 +1,91 @@
+<header id="title">
+  <hgroup>
+    <a href="/"><strong id="logo">Forge</strong></a>
+    <h1>Features</h1>
+    <p>Great features only in Forge</p>
+    <div class="sign-up">
+      <%= link_to new_user_registration_url, :class => "register button" do %>
+        <b>Sign Up</b> for free
+      <% end %>
+      <small class="cc">Or <a href="<%= new_user_registration_path %>" class="login">Log In</a> now</small>
+    </div>
+  </hgroup>
+</header>
+
+<!-- Features -->
+<section id="features">
+  <div class="wrap">
+  
+    <hgroup>
+      <h1>Features never seen in a hosting platform before. Until now.</h1>
+      <p>Our features set and user interface is like no other hosting services’ you’ve used. Carefully considered, crafted and geared to make hosting easier than it’s ever been before — no other hosting company does it like this.</p>
+    </hgroup>
+    
+    <div id="major">
+      <article class="versions">
+        <p><strong>Version based history</strong> Every deploy you make to your site on Forge is kept in the timeline, ready to rollback to.</p>
+      </article>
+      <article class="speed">
+        <p><strong>Optimized for speed</strong> The only thing faster than our control panel is the very website you're hosting with it.</p>
+      </article>
+      <article class="collaborate">
+        <p><strong>Collaborate with others</strong> Invite anyone to a Forge site and they can upload builds and manage it too.</p>
+      </article>
+    </div>
+    
+    <div id="minor">
+      <article class="previews">
+        <p><strong>Live site previews</strong> See your site right in the Forge interface.</p>
+      </article>
+      <article class="differences">
+        <p><strong>File differences</strong> View the file changes between versions.</p>
+      </article>
+    </div>
+      
+  </div>
+</section>
+
+<!-- Sync -->
+<section id="sync">
+  <div class="wrap">
+
+    <hgroup>
+      <h1>Drag &amp; Drop, or sync with Dropbox or GitHub. Your choice.</h1>
+    </hgroup>
+    
+    <article class="dragdrop">
+      <p><strong>Drag &amp; Drop</strong> Zip up your static site and just drag and drop it to the Forge window. As easy as that.</p>
+    </article>
+    
+    <article class="dropbox">
+      <p><strong>Sync with Dropbox</strong> Forge can follow a Dropbox folder, store the changes and then let you deploy the changes when you like.</p>
+    </article>
+    
+    <article class="github">
+      <p><strong>Sync with GitHub</strong> Forge can also sync with a folder in a GitHub repo and deploy a new version whenever you're ready.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- Technical -->
+<section id="process">
+  <div class="wrap">
+  
+    <hgroup>
+      <h1>The best features in Forge are the ones behind the scenes.</h1>
+      <p>We've built Forge with static websites in mind, so when we say we're optimized for serving up your content quicker than anyone else, it's because that was <em>goal number one</em>. Here's a little of what we do to achieve this —</p>
+    </hgroup>
+    
+    <ol id="steps">
+      <li class="speedy-ui"><strong>Speedy UI</strong> Creating new versions is <em>quick &amp; easy</em> thanks to a streamlined interface.</li>
+      <li class="turbo-js"><strong>TurboJS</strong> Your site is optimised to <em>eliminate page loads</em> and speed everything up.</li>
+      <li class="super-cdn"><strong>Super Fast CDN</strong> Your pages &amp; assets are hosted on <em>super-fast networks</em> around the world.</li>
+    </ol>
+  
+    <p class="info"><a href="/support">Read our Docs</a> for more about the technologies behind Forge and how to make the most of them</p>
+  
+  </div>
+</section>
+
+<%= render 'try' %>

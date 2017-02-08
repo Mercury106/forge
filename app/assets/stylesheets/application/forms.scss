@@ -1,0 +1,57 @@
+#content section fieldset#card .form-row {
+  max-width: 500px;
+}
+
+.form-row {
+
+  &.country {
+    float: left;
+    width: 100%;
+    select {
+      width: 100%;
+    }
+  }
+
+  &.cvc {
+    width: 180px;
+  }
+
+
+  /* Both */
+  &.cvc, &.expiry {
+    /*width: 50%;*/
+    float: left;
+    display: inline-block;
+    input {
+      width: 50%;
+    }
+  }
+  
+  /* CVC on the LHS */
+  &.cvc {
+    input {
+      width: 92px;
+      float: left;
+      clear: both;
+    }
+  }
+  
+  /* Expiry on the RHS */
+  &.expiry {
+    display: block;
+    float: left;
+    input, span {
+      float: left;
+      display: inline-block;
+    }
+    span {
+      padding: 8px 10px;
+    }
+    input {
+      width: auto;
+      min-width: 92px;
+      float: left;
+    }
+  }
+  
+}

@@ -1,0 +1,167 @@
+{{#if isLoaded}}
+  {{#if isPaid}}
+    <section>
+      <h2>Your Subscription</h2>
+
+      <fieldset id="plans">
+        <div class="table">
+          <div {{action 'changePlan' 'basic'}} {{bind-attr class=":plan isPro::selected wasBasic:current"}}>
+            <ul class="basic">
+              <li><strong>Copper</strong>
+                Plan {{#if wasBasic}}<small class="current">Current Plan</small>{{/if}}
+              </li>
+              <li><em>$10</em></li>
+              <li><small>(plus VAT where applicable)</small></li>
+              <li><b>10 sites</b> </li>
+              <li>Custom Domains</li>
+              <li>TurboJS Enabled</li>
+              <li>Global CDN</li>
+              <li>Custom Domains</li>
+              <li>24/7 Support</li>
+              <li><b>10GB bandwidth</b> / month <br> (20&cent; per extra GB)</li>
+              {{#unless isPro}}
+                <input checked="checked" type="radio">
+              {{/unless}}
+            </ul>
+          </div>
+          <div {{action "changePlan" 'pro'}} {{bind-attr class=":plan isPro:selected wasPro:current"}}>
+            <ul class="pro" {{action "changePlan" 'pro'}} {{bind-attr class=":plan isBasic:selected"}}>
+              <li><strong>Bronze</strong> Plan
+                {{#if wasPro}}<small class="current">Current Plan</small>{{/if}}
+              </li>
+              <li><em>$50</em></li>
+              <li><small>(plus VAT where applicable)</small></li>
+              <li><b>Unlimited sites</b></li>
+              <li> Custom Domains</li>
+              <li>TurboJS Enabled</li>
+              <li>Global CDN</li>
+              <li>Custom Domains</li>
+              <li>24/7 Support</li>
+              <li><b>100GB bandwidth</b> / month <br> (18&cent; per extra GB)</li>
+              {{#if isPro}}
+                <input checked="checked" type="radio">
+              {{/if}}
+            </ul>
+          </div>
+          <div class="plan disabled">
+            <ul class="iron">
+              <li><strong>Iron</strong> Plan
+                <small class="current">Coming soon</small>
+              </li>
+              <li><em>$100</em></li>
+              <li><small>(plus VAT where applicable)</small></li>
+              <li><b>Unlimited sites</b></li>
+              <li> Custom Domains</li>
+              <li>TurboJS Enabled</li>
+              <li>Global CDN</li>
+              <li>Custom Domains</li>
+              <li>24/7 Support</li>
+              <li><b>1TB bandwidth</b> / month <br> (15&cent; per extra GB)</li>
+            </ul>
+          </div>
+        </div>
+
+      </fieldset>
+
+      {{#if isDirty}}
+        <fieldset class="center">
+          {{#if isSaving}}
+            <p>
+              <center>{{view App.SpinnerView}}</center>
+            </p>
+          {{else}}
+            <button {{action 'rollBack'}} {{bind-attr class=":large :button"}}>Cancel</button>
+            <button {{action 'save'}} {{bind-attr class=":large :green :button"}}>Change Plan</button>
+          {{/if}}
+        </fieldset>
+      {{/if}}
+    </section>
+
+    <section>
+      <fieldset>
+        <h2>Billing Details</h2>
+        <p>If you need to change your card details, click below. We will debit this payment method every month.</p>
+        <button {{action changeCardDetails}}>Update Billing Details</button>
+      </fieldset>
+
+    </section>
+    <section>
+
+      <fieldset>
+        <h2>Cancel Subscription</h2>
+        {{#unless view.showingReallyCancelSubscriptionButton}}
+          <p>
+            You can cancel your subscription at any point. If you'd like to switch to a different plan instead, please select one from the choices under Your Subscription.</p>
+          </p>
+          <button {{action 'toggleProperty' 'showingReallyCancelSubscriptionButton' target="view"}}>
+            Downgrade to a Tin Plan
+          </button>
+        {{else}}
+          {{#if sites}}
+            <h4>Just a second...</strong></h4>
+            <p>Before we can cancel your subscription we need you to delete your sites first. Once you have removed your sites you can return here to cancel.</p>
+          {{else}}
+            <h4>Are you sure you want to cancel your subscription?</strong></h4>
+            <p>Your payment method will no longer be billed but you'll still have access to a free Forge account. If you want to cancel an account entirely please contact our team at <a href="mailto:support@getforge.com">support@getforge.com</a></p>
+            <p><button {{action 'cancelSubscription'}} class="red icon delete">Yes, cancel my subscription</button></p>
+          {{/if}}
+        {{/unless}}
+      </fieldset>
+    </section>
+    <section>
+      <h2>Subscription code</h2>
+      {{#if savedCoupon}}
+        Coupon saved!
+      {{else}}
+        <p>Got a subscription code? Enter it here: {{view Ember.TextField valueBinding="coupon"}}</p>
+
+        {{#if errors.coupon}}
+          <ul class="errors">
+            <li>Whoops: that coupon {{errors.coupon}}</li>
+          </ul>
+        {{/if}}
+
+        {{#if coupon}}
+           <a href="#none" {{action "save"}} {{bind-attr class=":large :button isDirty:green success:green isSaving:saving"}}>
+            {{#if isSaving}}
+             Saving...
+             {{else}}
+             Save
+             {{/if}}
+           </a>
+        {{/if}}
+      {{/if}}
+    </section>
+  {{else}}
+    <section class="center">
+      {{#if cancellingSubscription}}
+        <p>&nbsp;</p>
+        <center>
+        {{view App.SpinnerView}}
+        </center>
+        <p>&nbsp;</p>
+        <p>We're cancelling your subscription now. Sorry to see you go!</p>
+      {{else}}
+        <h2>Enter Billing Details</h2>
+        <p><b>Ready to take Forge to the next level?</b></p>
+        <p>Set up your billing information to get started.</p>
+        <p>Plans start from only $10 / month, and you can cancel at any time.</p>
+        <p>&nbsp;</p>
+        <button class="large green button" {{action 'changeCardDetails'}}>Enter Billing Details</button>
+      {{/if}}
+    </section>
+  {{/if}}
+{{else}}
+  <section>
+    <h2>Your Subscription</h2>
+    <br />
+    <br />
+    <br />
+    <br />
+    <center>{{view App.SpinnerView}}</center>
+    <br />
+    <br />
+    <br />
+    <br />
+  </section>
+{{/if}}

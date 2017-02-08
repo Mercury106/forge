@@ -1,0 +1,13 @@
+App.FaviconView = Ember.View.extend
+  template: Ember.Handlebars.compile '<img src="{{unbound view.faviconUrl}}" width="16" height="16"/>'
+
+  faviconUrl: (->
+    <% if ENV['CDN_HOST'].present? %>
+      "http://<%= ENV['CDN_HOST'] %>/#{@get('content.url')}/favicon.ico"
+    <% else %>
+    "http://<%= ENV['AWS_BUCKET'] %>.s3.amazonaws.com/#{@get('content.url')}/favicon.ico"
+    <% end %>
+  ).property 'content.id'
+
+App.FaviconSpanView = App.FaviconView.extend
+  template: Ember.Handlebars.compile '{{#with view.faviconUrl}}<span class="favicon" style="background-image: url({{unbound this}})" ></span>{{/with}}'

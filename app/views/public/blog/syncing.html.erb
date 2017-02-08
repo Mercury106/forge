@@ -1,0 +1,38 @@
+<%= render 'blog_header' %>
+
+<section id="blog" class="grade">
+  <div class="wrap">
+    
+    <article>
+    
+      <hgroup>
+        <h2><a href="#none">"Sync with Dropbox and GitHub"</a></h2>
+        <time>12th December, 2013</time>
+      </hgroup>
+      
+      <span class="image" style="background-image: url(/assets/public/blog-sync.png)" data-style="background-image: url(/assets/public/blog-sync.png)" data-retina-style="background-image: url(/assets/public/blog-sync@2x.png)"><a href="#none"></a></span>
+      
+      <div class="post">
+      
+        <p>Today we're announcing the launch of our most-requested feature - support for syncing and deploying sites using Dropbox and GitHub.</p>
+      
+        <p>Now you can easily sync your site to a Dropbox directory or a GitHub repository. Then, when you're ready to deploy your changes, just navigate to the site in your Forge admin panel and you're good to go.</p>
+        
+        <p>Making small changes to a big site? Don't worry about zipping your entire project each time - just push your changes, or wait for syncing to finish, and then go live. It's easy!</p>
+      
+        <p>
+          <center>
+            <%= link_to new_user_registration_url, :class => "register button" do %>
+              <b>Sign Up</b> and get started!
+            <% end %>
+          </center>
+        </p>
+
+      </div>
+      
+    </article>
+  
+  </div>
+</section>
+
+<%= render 'try' %>

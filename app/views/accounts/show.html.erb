@@ -1,0 +1,80 @@
+<div id="sign">
+
+  <%= form_for @user, :url => account_path do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <h2>Update your account</h2>
+
+    <fieldset>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </fieldset>
+    
+    <fieldset>
+      <%= f.label :password, "Change password" %>
+      <%= f.password_field :password, :value => "", :autocomplete => "off" %>
+    </fieldset>
+
+    <fieldset class="actions">
+      <%= f.submit "Update Account", :class => "green button" %>
+    </fieldset>
+  <% end %>
+
+  <%= form_for @user, :url => account_path, :html => {:id => "update_card"} do |f| %>
+    <fieldset id="card-form">
+      
+      <h2>Billing details</h2>
+      
+      <% if @user.stripe_customer_token.present? %>
+        <%= link_to "Change my card details", change_card_account_path %>
+      <% else %>
+        <%= render 'card_form', {f: f} %>
+      <% end %>
+      
+    </fieldset>
+
+    <fieldset class="actions">
+      <%= f.submit "Update Account", :class => "green button" %>
+    </fieldset>
+  <% end %>
+
+  <form>
+    <h2>This month</h2>
+    <p>Free bandwidth: <%= current_user.number_of_free_gigabytes %>GB</p>
+    <p>Bandwidth used: <%= current_user.bandwidth_this_month %>GB</p>
+    <p>Cost: <%= number_to_currency current_user.cost_this_month / 100, :unit => "$" %></p>
+  </form>
+
+  <form>
+    <h2>Previous usage</h2>
+    <fieldset>
+      <table>
+      <% (0..5).each do |number_of_months_ago| %>
+        <tr>
+          <td><%= number_of_months_ago.months.ago.strftime("%B %Y") %></td>
+          <td><%= number_to_human_size current_user.bandwidth_in_month(number_of_months_ago.months.ago) %></td>
+        </tr>
+      <% end %>
+      </table>
+    </fieldset>
+  </form>
+
+  <div id="invoices">
+    Loading invoices... <br /><br /><br /><br /><br /><br />
+    <script type="text/javascript">
+      $(function(){
+        $("#invoices").load("/account/invoices form")
+      })
+    </script>
+  </div>
+  
+</div>

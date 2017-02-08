@@ -1,0 +1,11 @@
+<% cache do %>
+  <% path = File.join(File.dirname(__FILE__), 'templates') %>
+  <% Dir.glob(File.join(path, "**/*")).each do |filename| %>
+    <% template = Pathname.new(filename).relative_path_from(Pathname.new(path)) %>
+    <% template = template.to_s.split(".")[0] %>
+    <% next if File.directory?(filename) %>
+    <script type="text/x-handlebars" data-template-name="<%= template %>">
+      <%= render :template => "ui/templates/#{template}" %>
+    </script>
+  <% end %>
+<% end %>

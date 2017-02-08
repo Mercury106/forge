@@ -1,0 +1,69 @@
+<section>
+  <h2>My Account</h2>
+
+  <form {{action "save" on="submit"}}>
+    <fieldset>
+      <label>Name</label>
+      {{view Ember.TextField valueBinding="name" type="text" classBinding="nameInvalid:error" name="name"}}
+      {{#if errors.name}}
+        <ul class="errors">
+          {{#each errors.name}}
+            <li class="error">Name {{this}}</li>
+          {{/each}}
+        </ul>
+        <p>&nbsp;</p>
+      {{/if}}
+
+      <label>Email</label>
+      <input type="text" disabled {{bind-attr value=email}}>
+      {{#if errors.email}}
+        <ul class="errors">
+          {{#each errors.email}}
+            <li class="error">Email {{this}}</li>
+          {{/each}}
+        </ul>
+        <p>&nbsp;</p>
+      {{/if}}
+
+      <label>Password</label>
+      {{view Ember.TextField valueBinding="password" type="password" classBinding="passwordInvalid:error" name="password" autocomplete="off"}}
+      {{#if errors.password}}
+        <ul class="errors">
+          {{#each errors.password}}
+            <li class="error">This password {{this}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </fieldset>
+
+    <fieldset>
+      <div class="dismiss">
+        <a href="#none" {{action "save"}} {{bind-attr class=":large :button isDirty:green success:green isSaving:saving"}}>
+          {{#if isSaving}}
+            {{view App.SpinnerView color="#fff"}}
+          {{/if}}
+          {{#if success}}
+            <span>Saved!</span>
+          {{else}}
+            <span>Save Details</span>
+          {{/if}}
+        </a>
+      </div>
+    </fieldset>
+    <input type="submit" style="opacity: 0; top: -10000px; position: absolute;">
+  </form>
+</section>
+
+{{#unless isNotConnectedToDropboxOrGithub}}
+  <section>
+    <h2>Account Connections</h2>
+    <fieldset>
+      {{#if github_token}}
+        <button class="large icon delete red github" {{action disconnectGithub}}>Disconnect from GitHub</button>
+      {{/if}}
+      {{#if dropbox_token}}
+        <button class="large icon delete red dropbox" {{action disconnectDropbox}}>Disconnect from Dropbox</button>
+      {{/if}}
+    </fieldset>
+  </section>
+{{/unless}}

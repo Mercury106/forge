@@ -1,0 +1,5 @@
+<ul>
+  <% @user.sites.each do |site| %>
+    <li><%= link_to site, admin_site_url(site) %></li>
+  <% end %>
+</ul>

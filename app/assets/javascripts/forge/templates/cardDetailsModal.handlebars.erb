@@ -1,0 +1,139 @@
+<section>
+
+
+    {{#if success}}
+      <fieldset>
+        <center>
+          <h2>Success!</h2>
+          <p>Your card details have been saved. Thanks for subscribing to Forge!</p>
+        </center>
+      <fieldset>
+    {{else}}
+      <fieldset>
+        {{#if showPlans}}
+          <h1 class="billing-details">Enter Billing Details</h1>
+        {{else}}
+          <h1 class="billing-details">Update Billing Details</h1>
+        {{/if}}
+        <form action="" method="POST" id="payment-form">
+          {{#if showPlans}}
+            <div id="plans">
+              <div class="table">
+                <div {{action 'changePlan' 'basic'}} {{bind-attr class=":plan isPro::selected"}}>
+                  <ul class="basic">
+                    <li><strong>Copper</strong> Plan</li>
+                    <li><em>$10</em></li>
+                    <li><small>(plus VAT where applicable)</small></li>
+                    <li><b>10 sites</b> </li>
+                    <li>Custom Domains</li>
+                    <li>TurboJS Enabled</li>
+                    <li>Global CDN</li>
+                    <li>Custom Domains</li>
+                    <li>24/7 Support</li>
+                    <li><b>10GB bandwidth</b> / month <br> (20&cent; per extra GB)</li>
+                  </ul>
+                </div>
+                <div {{action "changePlan" 'pro'}} {{bind-attr class=":plan isPro:selected"}}>
+                  <ul class="pro" {{action "changePlan" 'pro'}} {{bind-attr class=":plan isBasic:selected"}}>
+                    <li><strong>Bronze</strong> Plan</li>
+                    <li><em>$50</em></li>
+                    <li><small>(plus VAT where applicable)</small></li>
+                    <li><b>Unlimited sites</b></li>
+                    <li> Custom Domains</li>
+                    <li>TurboJS Enabled</li>
+                    <li>Global CDN</li>
+                    <li>Custom Domains</li>
+                    <li>24/7 Support</li>
+                    <li><b>100GB bandwidth</b> / month <br> (18&cent; per extra GB)</li>
+                  </ul>
+                </div>
+                <div class="plan disabled">
+                  <ul class="iron">
+                    <li><strong>Iron</strong> Plan</li>
+                    <li><em>$100</em></li>
+                    <li><small>(plus VAT where applicable)</small></li>
+                    <li><b>Unlimited sites</b></li>
+                    <li> Custom Domains</li>
+                    <li>TurboJS Enabled</li>
+                    <li>Global CDN</li>
+                    <li>Custom Domains</li>
+                    <li>24/7 Support</li>
+                    <li><b>1TB bandwidth</b> / month <br> (15&cent; per extra GB)</li>
+                  </ul>
+                </div>
+              </div>
+          {{/if}}
+
+          <div class="form-row country">
+            {{#if errors.country}}
+              <ul class="errors">
+                <li>Oops - your country {{errors.country}}</li>
+              </ul>
+            {{/if}}
+            <label>Choose your country</label>
+            {{view Ember.Select contentBinding="view.countries" valueBinding="country"}}
+          </div>
+
+          {{#if errors}}
+            <ul class="errors">
+              {{#each errors}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+
+          <div id="billing-card">
+
+            <div class="form-row">
+              <label>Card Number</label>
+              {{input value=view.cardNumber type="text" size="20" data-stripe="number" placeholder="●●●●●●●●●●●●●●●●"}}
+            </div>
+
+            <div class="form-row expiry">
+              <label>Expiration (MM/YYYY)</label>
+              <input type="text" size="2" data-stripe="exp-month" placeholder="MM" />
+              <span> / </span>
+              <input type="text" size="4" data-stripe="exp-year" placeholder="YYYY" />
+            </div>
+
+            <div class="form-row cvc">
+              <label>CVC</label>
+              <input type="text" size="4" data-stripe="cvc" placeholder="CVC" />
+            </div>
+
+          </div>
+
+        </form>
+      </fieldset>
+
+      <fieldset id="coupon">
+        {{#if view.showingCouponField}}
+          <p>Enter your coupon:</p>
+          {{view Ember.TextField valueBinding="coupon"}}
+        {{else}}
+          <p><a {{action 'toggleProperty' 'showingCouponField' target='view'}} href="#none">I have a coupon</a></p>
+        {{/if}}
+      </fieldset>
+    {{/if}}
+
+</section>
+
+<div class="dismiss">
+  {{#if success}}
+    <span class="check-icon">&nbsp;</span>
+  {{else}}
+    {{#unless isSaving}}
+      <a href="#none" {{action closeModal}} class="button large">Close</a>
+    {{/unless}}
+    <a href="#none"
+      {{action "save" target='view'}}
+      {{bind-attr class=":button :large isSaving:saving isSaving::green"
+      disabled="view.showSaveSpinner"}}>
+
+      {{#if isSaving}}
+        {{view App.SpinnerView}}
+      {{/if}}
+      <span>Save Details</span>
+    </a>
+  {{/if}}
+</div>

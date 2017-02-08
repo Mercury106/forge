@@ -1,0 +1,131 @@
+<html>
+
+<head>
+
+  <style type="text/css">
+  
+    a {
+      text-decoration: underline;
+      color: #228ee9;
+      font-weight: bold;
+    }
+    
+    a:hover {
+      text-decoration: none;
+    }
+    
+    a img {
+      border: none;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+  </style>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=.5">
+
+  <title>Forge Private Beta</title>
+
+</head>
+
+<body bgcolor="#f4f4f4" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: #555; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; line-height: 28px; -webkit-font-smoothing: antialiased;">
+
+<!-- Email start -->
+<table bgcolor="#f4f4f4" width="100%" border="0" cellpadding="0" cellspacing="0" style="height: 100%">
+
+  <tbody>
+  
+    <tr>
+    
+      <!-- Left Col -->
+      <td width="auto" bgcolor="#f4f4f4"><img style="display:block" src="<%= image_path "email/space.gif" %>" alt="" width="20" height="1"></td>
+      <!-- / Left Col -->
+      
+      <!-- Middle Col -->
+      <td width="502" bgcolor="#f4f4f4" valign="top">
+        
+        <table bgcolor="#f4f4f4" width="502" border="0" cellpadding="0" cellspacing="0">
+        
+          <tbody>
+            
+            <!-- Top -->
+            <tr>
+              <td width="502">
+                <table bgcolor="#f4f4f4" width="502" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="502" height="12"><img src="<%= image_path "email/space.gif" %>" style="display: block;" width="100%" height="12" /></td>
+                  </tr>
+                  <tr>
+                    <td width="502" height="52" style="text-align: center;"><span style="font-size: 13px;"><singleline label="Reason for receiving email"></singleline></span>
+                  </tr>
+                  <tr>
+                    <td valign="middle" width="502"><img src="<%= image_path "email/email.jpg" %>" style="display: block" width="502" height="100" /></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <!-- / Top -->
+            
+            <!-- Content -->
+            <tr>
+              <td width="502">
+                <table bgcolor="#fff" width="502" border="0" cellpadding="0" cellspacing="0" style="-webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-left: 1px solid #dbdbdb; border-right: 1px solid #dbdbdb; border-bottom: 1px solid #dbdbdb;">
+                  <tr>
+                    <td width="502" height="30" colspan="3"><img src="<%= image_path "email/space.gif" %>" style="display: block;" width="100%" height="30" /></td>
+                  </tr>
+                  <tr>
+                    <td width="32"></td>
+                    <td width="438" style="font-size: 13px; line-height: 28px;"><%= yield %></td>
+                  </tr> 
+                  <tr>
+                    <td width="32"></td>
+                    <td width="438" style="font-size: 13px; line-height: 28px;">
+                      <multiline label="Outro"></multiline>
+                    </td>
+                    <td width="32"></td>
+                  </tr>
+                  <tr>
+                    <td width="502" height="30" colspan="3"><img src="<%= image_path "email/space.gif" %>" style="display: block;" width="100%" height="30" /></td>
+                  </tr>
+                  <!-- / Divide -->
+                </table>
+              </td>
+            </tr>
+            <!-- / Content -->
+            
+            <!-- Foot -->
+            <tr>
+              <td width="502">
+                <table bgcolor="#f4f4f4" width="502" border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td width="502" height="62" style="text-align: center;"><span style="font-size: 13px;"><!-- footer message --></span></td>
+                    </tr>
+                    <tr>
+                      <td width="502" height="32" ><img src="<%= image_path "email/space.gif" %>" style="display: block;" width="100%" height="32" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <!-- / Foot -->
+          
+          </tbody>
+        
+        </table>
+        
+      </td>
+      <!-- / Middle Col -->
+      
+      <!-- Right Col -->
+      <td width="auto" bgcolor="#f4f4f4"><img style="display:block" src="<%= image_path "email/space.gif" %>" alt="" width="20" height="1"></td>
+      <!-- / Right Col -->
+    
+    </tr>
+      
+  </tbody>
+
+</table>

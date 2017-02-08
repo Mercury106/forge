@@ -1,0 +1,64 @@
+<section>
+
+  {{#if canCreate}}
+
+    <h1>Add a new site</h1>
+    <fieldset>
+      <label>Choose a unique subdomain{{#if isPaid}} or enter your own domain{{/if}}.</label>
+      {{view App.SelectableURLTextView valueBinding="url" placeholder="my-new-site.getforge.io" classBinding="errors.url:error"}}
+      {{#if errors.url}}
+        <ul class="errors">
+          {{#each errors.url}}
+            <li class="error">This URL {{this}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </fieldset>
+
+    {{#if isValid}}
+      {{#if hasCustomDomain}}
+        <p class="instructions">
+          Your site needs an A record pointing to <strong><%= ENV['EXTERNAL_IP'] %></strong> first!
+        </p>
+      {{/if}}
+    {{/if}}
+  {{else}}
+    <h1>Just a moment!</h1>
+    {{#if isPaid}}
+      <p>
+        In order to add more sites, you'll need a bigger plan!
+      </p>
+    {{else}}
+      <p>
+        In order to add more sites, you'll need to fill in your billing information.
+        It won't take a moment!
+      </p>
+    {{/if}}
+  {{/if}}
+
+</section>
+
+<div class="dismiss">
+  <a {{action 'closeModal'}} class="button large">Cancel</a>
+  {{#if canCreate}}
+    <a {{bind-attr class=":button :large isSaving:saving:green" disabled="isSaving"}} {{action save}}>
+      {{#if isSaving}}
+        {{view App.SpinnerView}}
+      {{/if}}
+      <span>Add Site</span>
+    </a>
+  {{else}}
+    {{#if isPaid}}
+      <span {{action 'closeModal'}}>
+        {{#link-to 'account.billing' classBinding=":button :large :green"}}
+          <span>Upgrade...</span>
+        {{/link-to}}
+      </span>
+    {{else}}
+      <a {{bind-attr class=":button :large :green"}} {{action openCardDetailsModal}}>
+        <span>Enter my billing information</span>
+      </a>
+    {{/if}}
+  {{/if}}
+</div>
+

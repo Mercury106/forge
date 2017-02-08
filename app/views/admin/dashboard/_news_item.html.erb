@@ -1,0 +1,14 @@
+<%= link_to item.user, admin_user_path(item.user) %> 
+
+<%= item.action %>
+
+<% if item.site %>
+  <%= link_to item.site, admin_site_path(item.site) %>
+<% end %>
+
+<small>
+  <%= time_ago_in_words item.created_at %> ago
+  <% if item.site %>
+    <%= link_to "open site", "http://#{item.site.url}" %>
+  <% end %>
+</small>

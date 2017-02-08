@@ -1,0 +1,18 @@
+<div id="sign">
+  
+  <%= form_for @user, :url => account_path, :html => {:id => "update_card"} do |f| %>
+    <fieldset>
+      
+      <h2>Change your card details</h2>
+      
+      <%= render 'card_form', :f => f %>
+
+    </fieldset>
+    
+    <fieldset class="actions">
+      <%= f.submit "Update Account", :class => "green button" %>
+    </fieldset>
+    
+  <% end %>
+  
+</div>

@@ -1,0 +1,517 @@
+/* @override 
+	http://forge.hammer.dev/assets/css/style.css
+	http://forge.dev/assets/css/style.css */
+
+body {
+  font: 600 13px/26px "Open Sans";
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button {
+  font: 600 13px/26px "Open Sans";
+  -webkit-font-smoothing: antialiased;
+}
+
+#sidebar {
+  width: 270px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #444749;
+}
+
+#sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 5;
+  background-image: -webkit-gradient(linear, left bottom, right bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.3)));
+  background-image: -moz-linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+#page {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 270px;
+}
+
+header {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 2;
+}
+
+#sidebar header {
+  background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 100%) #313335;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.25))) #313335;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .15);
+  position: relative;
+  z-index: 2;
+}
+
+#page header {
+  position: relative;
+  background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 100%) #aab6bc;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.5))) #aab6bc;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .15);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .3);
+}
+
+#sidebar header ul {
+  margin: 0;
+  padding: 0 0 0 6px;
+  list-style: none;
+}
+
+#sidebar header ul li {
+  position: relative;
+  display: inline-block;
+  padding-top: 7px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#sidebar header ul li:last-child {
+  position: absolute;
+  top: 0;
+  right: 6px;
+}
+
+#sidebar header ul li:nth-child(1)::before {
+  content: '';
+  width: 3px;
+  height: 34px;
+  position: absolute;
+  top: 8px;
+  right: -3px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), color-stop(0.5, rgba(255, 255, 255, 0.05)), to(rgba(255, 255, 255, 0)));
+  background-image: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+#sidebar header ul li:nth-child(1)::after {
+  content: '';
+  width: 1px;
+  height: 34px;
+  position: absolute;
+  top: 8px;
+  right: -2px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.35)), to(rgba(0, 0, 0, 0)));
+  background-image: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+#sidebar header ul li a {
+  position: relative;
+  display: block;
+  text-indent: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#sidebar header ul li b {
+	display: block;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	width: 50px;
+	height: 34px;
+	border-radius: 4px;
+	background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 100%) #313335;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.25))) #313335;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3), inset 0 0 0 1px rgba(0, 0, 0, .15), 0 1px 0 rgba(255, 255, 255, .05);
+	opacity: 0;
+	-webkit-transition: opacity ease .2s;
+}
+
+#sidebar header ul li.add b {
+  width: 41px;
+}
+
+#sidebar header ul li a:hover b {
+  opacity: 1;
+}
+
+#sidebar header ul li a::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  height: 22px;
+  width: 31px;
+  background-image: url(../images/sprite.png);
+  background-repeat: no-repeat;
+}
+
+#sidebar header ul li.home a::after {
+  background-position: 0 0;
+}
+
+#sidebar header ul li.account a::after {
+  background-position: -31px 0;
+}
+
+#sidebar header ul li.add a::after {
+  background-position: -62px 0;
+  width: 21px;
+}
+
+#sidebar header ul li a:active b {
+	background: -moz-linear-gradient(90deg, rgba(38, 40, 42, 0) 0%, #1a1b1d 100%) #313335;
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(38, 40, 42, 0)), to(#1a1b1d)) #313335;
+	-webkit-transition: none;
+}
+
+#sidebar nav {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+  width: 100%;
+  overflow: hidden;
+}
+
+#sidebar nav input {
+  height: 44px;
+  background-color: #3d4043;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0 0 46px;
+  margin: 0;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1), 0 1px 0 rgba(255, 255, 255, .03);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  font-weight: 500;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+  -webkit-transition: background ease .3s;
+  line-height: 24px;
+  position: relative;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+#sidebar nav input:focus {
+  background-color: #35373a;
+}
+
+#sidebar nav input::-webkit-input-placeholder {
+  color: #868b8e;
+  font-style: italic;
+}
+
+#sidebar nav input::-moz-input-placeholder {
+  color: #868b8e;
+  font-style: italic;
+}
+
+#sidebar nav input::-ms-input-placeholder {
+  color: #868b8e;
+  font-style: italic;
+}
+
+#sidebar nav::after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 15px;
+  top: 14px;
+  left: 21px;
+  z-index: 3;
+  background: url(../images/sprite.png) -101px 0;
+}
+
+#sidebar nav ul {
+  list-style: none;
+  margin: 0;
+  font-size: 13px;
+  line-height: 34px;
+  padding-bottom: 8px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#sidebar nav ul li {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+#sidebar nav ul li.current {
+  z-index: 2;
+}
+
+#sidebar nav ul li a {
+  position: relative;
+  display: block;
+  color: #cfd6db;
+  text-decoration: none;
+  padding-left: 48px;
+  -webkit-transition: background ease .2s;
+}
+
+#sidebar nav ul li a:hover {
+  background-color: #515659;
+}
+
+#sidebar nav ul li.current a {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#0b7fcf), to(#59b9ec));
+  background-image: -moz-linear-gradient(90deg, #0b7fcf 0%, #59b9ec 100%);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, .05), inset 0 1px 0 rgba(255, 255, 255, .1), inset 0 -1px 0 rgba(255, 255, 255, .1), 0 0 0 1px rgba(0, 0, 0, .3);
+  -webkit-transition: none;
+}
+
+.no-cssmasks #sidebar nav ul li.current a b {
+  background: transparent;
+}
+
+#sidebar nav ul li a b {
+  position: relative;
+  font-weight: 600;
+  background-color: #434649;
+  z-index: 2;
+  padding-right: 30px;
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: top right;
+  -moz-mask-position: top right;
+  mask-position: top right;
+  -webkit-transition: background ease .2s;
+}
+
+.no-cssmasks #sidebar nav ul li a b {
+  width: 40%;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#sidebar nav ul li a:hover b {
+  background-color: #515659;
+}
+
+#sidebar nav ul li.current a b {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#1c8bd4), to(#47ace5));
+  background-image: -moz-linear-gradient(90deg, #1c8bd4 0%, #47ace5 100%);
+  color: #fff;
+  -webkit-transition: none;
+}
+
+#sidebar nav ul li a small {
+  color: #868b8e;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  position: absolute;
+  top: 1px;
+  z-index: 1;
+  right: 0;
+  padding-right: 18px;
+}
+
+.no-cssmasks #sidebar nav ul li a small {
+  width: 82px;
+  display: inline-block;
+  text-overflow: "..." "...";
+  overflow: hidden;
+  text-align: right;
+}
+
+#sidebar nav ul li.current a small {
+  color: #a1d3f4;
+}
+
+#sidebar nav ul li a span.favicon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  z-index: 3;
+  top: 9px;
+  left: 20px;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+#sidebar nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 8px;
+  left: 19px;
+  border-radius: 2px;
+  background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%) rgba(255, 255, 255, 0.9);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(#ffffff)) rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 1), 0 1px 1px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .1);
+  z-index: 1;
+}
+
+#page header h2 {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 600;
+  color: #727b7f;
+  line-height: 16px;
+  top: 9px;
+  left: 18px;
+}
+
+#page header h2 small {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: block;
+}
+
+#page header h2 small a {
+  color: #899499;
+  text-decoration: none;
+}
+
+#page header ul {
+  list-style: none;
+  text-align: center;
+  font-size: 14px;
+  line-height: 28px;
+  margin: 0;
+  padding: 9px 0 0;
+}
+
+#page header ul li {
+  font-weight: 600;
+  display: inline-block;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .1);
+  background: -moz-linear-gradient(90deg, rgba(110, 121, 128, 0) 0%, rgb(110, 121, 128) 100%) rgba(118, 129, 134, 0.4);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(110, 121, 128, 0)), to(rgb(110, 121, 128))) rgba(118, 129, 134, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .03);
+  vertical-align: middle;
+}
+
+#page header ul li a {
+  background: -moz-linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 100%) #b4c0c5;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.4))) #b4c0c5;
+  color: #666f75;
+  text-decoration: none;
+  display: block;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  height: 26px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 0 0 1px rgba(130, 139, 145, .5);
+  padding: 0 22px 2px;
+  line-height: 26px;
+}
+
+#page header ul li.current a {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1);
+  height: 27px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+
+#page header ul li:nth-child(1), #page header ul li:nth-child(1) a {
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+#page header ul li:nth-child(1) a {
+  margin-left: 1px;
+}
+
+#page header ul li:nth-child(1).current a {
+  margin-left: 0;
+}
+
+#page header ul li:nth-child(2), #page header ul li:nth-child(2) a {
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#page header ul li:nth-child(2) a {
+  margin-right: 1px;
+}
+
+#page header ul li:nth-child(2).current a {
+  margin-right: 0;
+}
+
+#page header a.settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#page header a.settings::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url(../images/sprite.png) no-repeat -83px 0;
+  top: 15px;
+  right: 16px;
+}
+
+#page .iframe {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 240px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#page iframe {
+  position: relative;
+  border: none;
+  /* This fixes a strange nav display bug caused by the iFrame */
+  outline: 1px solid transparent;
+  width: 100%;
+  height: 240px;
+}
+
+#page::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 240px;
+  z-index: 1;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#ffffff), color-stop(0.749, rgba(255, 255, 255, 0)));
+  background-image: -moz-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 74.9%);
+  pointer-events: none;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+
+	#sidebar header ul li a::after, #page header a.settings::after, #sidebar nav::after {
+	  background-image: url(../images/sprite@2x.png);
+	  background-size: 114px 23px;
+	}
+
+}

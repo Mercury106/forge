@@ -1,0 +1,15 @@
+/*
+*= require public/normalize
+*= require public/style
+*= require public/modal
+*= require_tree ./public
+*/
+
+body {
+  -webkit-transition: ease opacity 0.4s;
+  opacity: 1;
+}
+
+body.hidden {
+  opacity: 0;
+}

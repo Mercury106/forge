@@ -1,0 +1,26 @@
+<header>
+
+  <h2 class="user">
+    {{name}}
+    {{view App.AvatarView emailBinding="email"}}
+  </h2>
+
+  <ul>
+    <li>
+      {{#link-to 'account'}}My Account{{/link-to}}
+    </li><li class="versions">
+      {{#link-to 'account.billing'}}Billing{{/link-to}}
+    </li><li class="versions current">
+      {{#link-to 'logOut'}}Log Out{{/link-to}}
+    </li>
+  </ul>
+
+  <a class="show-sidebar" {{action 'toggleSidebar'}} id="show-sidebar">Show Sidebar</a>
+</header>
+
+<div id="content">
+  <section class="center">
+    <h2>Log Out</h2>
+    <button class="large red button delete icon" {{action logOut}}>Click here to log out</button>
+  </section>
+</div>

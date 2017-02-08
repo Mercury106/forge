@@ -1,0 +1,73 @@
+{{#unless formsPresented}}
+
+
+  <div class="forms-zero section fp-section active" id="section1">
+    <video autoplay="" loop="" muted="" id="myVideo" class="brightness">
+      <source src="/assets/screencast-draft.mp4" type="video/mp4">
+
+      <source src="/assets/screencast-draft.ogg" type="video/ogg">
+    </video>
+    <div class="description">
+      <div class="description-content">
+        <div class="logo">
+          <h1>Forms <span class="sub-title">on <strong>Forge</strong></span></h1>
+        </div>
+
+        <div class="description-text">
+          <p>
+            add <span class="code">data-forge-name</span> to your <span class="code">&lt;form&gt;</span> and <span class="code">&lt;input&gt;</span> elements...
+          </p>
+          <p>
+            Upload to Forge...
+          </p>
+          <p>
+            And we'll do the rest.
+          </p>
+          </div>
+
+          <div {{bind-attr class=":typefrom_help :big isNewUser:first-time"}}>
+            <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/gXN2Ax" data-mode="1" target="_blank"></a>
+            <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+
+{{else}}
+
+
+  <div id="content">
+    <section class="forms">
+      <h2>
+        Forge forms
+        <div {{bind-attr class=":typefrom_help :dark isNewUser:first-time"}}>
+          <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/gXN2Ax" data-mode="1" target="_blank"></a>
+          <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
+        </div>
+      </h2>
+      <div class="forms-list">
+        <div class="forms-list-header">
+          <div class="form-name">Name</div>
+          <div class="form-count">Submissions</div>
+          <div class="form-active">Active</div>
+          <div class="form-notifications">Notifications</div>
+          <div class="form-autoresponse">Autoresponse</div>
+        </div>
+        {{#each form in model}}
+          {{#link-to "site.forms.edit" form}}
+            <div class="forms-list-item">
+              <div class="form-name">{{form.human_name}}</div>
+              <div class="form-count">{{form.form_data.length}}</div>
+              <div {{bind-attr class=":form-active form.active:enabled:disabled"}}></div>
+              <div {{bind-attr class=":form-notifications form.notifications:enabled:disabled"}}></div>
+              <div {{bind-attr class=":form-autoresponse form.auto_response:enabled:disabled"}}></div>
+            </div>
+          {{/link-to}}
+        {{/each}}
+      </div>
+    </section>
+  </div>
+
+{{/unless}}

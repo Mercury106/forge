@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <%= stylesheet_link_tag 'teaser' %>
+  <%= javascript_include_tag 'teaser', defer: 'defer' %>
+  
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,300,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    
+  <link href="<%= asset_path 'teaser/favicon.ico' %>" rel="shortcut icon">
+  <link href="<%= asset_path 'teaser/apple-touch-icon.png' %>" rel="apple-touch-icon">
+  
+  <title>Forge</title>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-20619422-6', 'getforge.com');
+    ga('send', 'pageview');
+  </script>
+  
+  <meta name="google-site-verification" content="gyd6EvR9vZXxveoYGr3XfpZx2Ky0OTYmNyK3dEakq2o" />
+  
+  <%= csrf_meta_tags %>
+
+  <% if Rails.env.development? %>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <% end %>
+  
+</head>
+
+<body>
+
+  <% unless @hide_login %>
+    <header>
+      <ul>
+        <li class="current home"><a class='current' href="/">Forge</a></li>
+        <li class="login"><a href="#none">Login</a></li>
+      </ul>
+    </header>
+  <% end %>
+  
+  <%= yield %>
+  
+  <footer>
+    <p>Built by <a href="http://riothq.com" class="riot">Riot</a>, creators of <a href="http://hammerformac.com" class="hammer">Hammer for Mac</a> and <a href="http://anvilformac.com" class="anvil">Anvil for Mac</a></p>
+  </footer>
+
+</body>
+
+</html>

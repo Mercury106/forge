@@ -1,0 +1,88 @@
+
+
+
+  <section class="forms">
+    <h2>Settings</h2>
+    <h3>Submit</h3>
+    <form>
+      <fieldset>
+        <div class="form-ajax-settings">
+          <p>
+            <label>
+              {{view Ember.Checkbox checkedBinding="ajax_form"}}
+
+              &nbsp;
+              AJAX Submit
+            </label>
+          </p>
+          {{#if ajax_form}}
+            <p>
+              <label>Success message for user</label>
+            </p>
+            <p>
+              {{view Ember.TextField valueBinding="ajax_message" autoselect=false placeholder="Enter your custom message here"}}
+            </p>
+          {{/if}}
+        </div>
+
+        <div class="form-redirect-settings">
+          <p>
+            <label>
+              {{view Ember.Checkbox checkedBinding="redirect_to_url"}}
+              &nbsp;
+              Redirect on submit
+            </label>
+          </p>
+          {{#if redirect_to_url}}
+            <p>
+              <label>URL</label>
+            </p>
+            <p>
+             {{view Ember.TextField valueBinding="redirect_url" autoselect=false placeholder="https://yoursite.com/thankyou"}}
+            </p>
+          {{/if}}
+        </div>
+      </fieldset>
+    </form>
+
+
+    <h3>Notifications</h3>
+    <form>
+      <fieldset>
+        <p>
+          <label>
+            {{view Ember.Checkbox checkedBinding="notifications"}}
+            &nbsp;
+            Send me notifications for new submissions
+          </label>
+        </p>
+        <p>
+          <label>
+            {{view Ember.Checkbox checkedBinding="auto_response"}}
+            &nbsp;
+            Send autoresponce to peaple who submited the form with email
+          </label>
+        </p>
+        {{#if auto_response}}
+          <h4>Create your email</h4>
+          {{view Ember.TextField valueBinding="email_address" autoselect=false placeholder="from address"}}
+          {{view Ember.TextField valueBinding="email_subject" autoselect=false placeholder="subject"}}
+
+          {{view Ember.TextArea valueBinding="email_body" autoselect=false placeholder="email body" rows="12"}}
+        {{/if}}
+      </fieldset>
+    </form>
+
+
+    <div class="actions">
+      <button {{bind-attr class="isDirty:green :button isSaving:saving" disabled="isSaving"}} {{action 'save'}}>
+        {{#if isSaving}}
+          {{view App.SpinnerView color="#fff"}}
+        {{/if}}
+        <span>Save</span>
+      </button>
+      <button {{action 'cancelSave'}}>Cancel</button>
+    </div>
+
+
+  </section>

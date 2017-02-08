@@ -1,0 +1,21 @@
+<div id="sign">
+  <h2><%= t 'devise.invitations.edit.header' %></h2>
+  
+  <%= form_for resource, :as => resource_name, :url => user_invitation_path, :html => { :method => :put } do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :invitation_token %>
+    
+    <fieldset>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </fieldset>
+    
+    <fieldset class="actions">
+      <p><%= f.submit t("devise.invitations.edit.submit_button"), :class => "green button" %></p>
+    </fieldset>
+  <% end %>
+</div>

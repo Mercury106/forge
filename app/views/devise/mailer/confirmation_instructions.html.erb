@@ -1,0 +1,14 @@
+<p>Hey there, <%= @resource %>!</p>
+
+<p>Thanks for signing up to Forge. We hope you like it!</p>
+
+<p>Please confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', user_confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>You'll need to confirm your account within a couple of days to use Forge.</p>
+
+<p>
+  Thanks,<br />
+  The Forge Team
+</p>

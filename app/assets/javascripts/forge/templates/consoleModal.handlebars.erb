@@ -1,0 +1,30 @@
+<section class="console-modal">
+  <h1><i class="terminal-icon"></i>Forge console</h1>
+  <!-- <div class="console-restart">Restart</div> -->
+    <div class="logger-state" {{bind-attr class="isSuccess:isSuccess isFailed:isFailed"}}>
+      <div class="console-log-string-status">{{status}}</div>
+      <div class="console-log">
+        <!-- <div class="console-log-string">remote: Counting objects: 24, <span class="status inprogress">24%</span></div>
+        <div class="console-log-string">remote: Compressing objects: 100% (22/22),<span class="status">done.</span></div>
+         -->
+
+          <div class="console-wrapper">
+            {{#each message in messages}}
+              <div class="console-log-string">
+                {{message.html_message}}
+                <span class="status"><span>.</span><span>.</span><span>.</span></span>
+              </div>
+            {{/each}}
+          </div>
+
+      </div>
+
+      <div class="console-deploy-status success">
+        Your site was deployed successfully
+      </div>
+      <div class="console-deploy-status fail">
+        Your deployment was unsuccessful
+      </div>
+    </div>
+</section>
+

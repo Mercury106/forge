@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge is a brand-new way of hosting static websites. Static hosting made simple.">
+  
+  <meta property="og:title" content="Forge - Static hosting made simple"/>
+  <meta property="og:site_name" content="Forge"/>
+  <meta property="og:image" content="<%= asset_url "public/facebook.jpg" %>"/>
+  <meta property="og:description"content="Forge is a brand-new way of hosting static websites. Static hosting made simple." />
+  
+  <%= javascript_include_tag 'public' %>
+  <%= stylesheet_link_tag 'public' %>
+
+  <% if Rails.env.development? %>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <% end %>
+    
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700" rel="stylesheet" type="text/css">
+  
+  <link href="<%= asset_url 'favicon.ico' %>" rel="shortcut icon">
+  <link href="<%= asset_url "public/apple-touch-icon.png" %>" rel="apple-touch-icon-precomposed">
+  
+  <title>Forge - Simple static hosting for html sites and javascript apps</title>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-20619422-6', 'getforge.com');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body>
+
+  <div id="overlay"></div>
+
+  <div id="modal">
+
+    <div class="viewport">
+    
+      <div id="register">
+
+        <%= form_for(@user, :as => :user, :url => registration_path(:user)) do |f| %>
+          
+          <%= devise_error_messages! %>
+
+          <fieldset>
+            <%= f.label :name %>
+            <%= f.text_field :name, :placeholder => "your full name" %>
+          </fieldset>
+
+          <fieldset>
+            <%= f.label :email %>
+            <%= f.email_field :email, :placeholder => "your email address" %>
+          </fieldset>        
+        
+          <fieldset>
+            <%= f.label :password %>
+            <% if Rails.env.development? %>
+              <%= f.password_field :password, :placeholder => "********", :value => "testing" %>
+            <% else %>
+              <%= f.password_field :password, :placeholder => "********" %>
+            <% end %>
+          </fieldset>
+          
+          <fieldset class="actions">
+            <button class="button green"><b>Get Started</b></button>
+          </fieldset>
+          
+        <% end %>
+            
+      </div>
+            
+      <div id="login" class="show">
+        <%= form_tag "/sessions", :method => "post" do %>
+          
+          <fieldset>
+            <label for="user-email">Email</label>
+            <input type="email" name="session[email]" id="user-email" placeholder="elliott@riothq.com"></input>
+          </fieldset>
+          
+          <fieldset>
+            <label for="user-password">Password</label>
+            <input type="password" id="user-password" name="session[password]" placeholder="*******"></input>
+          </fieldset>
+          
+          <p class="remember">
+            <input id="user-remember-me" type="checkbox" checked="checked" name="session[remember_me]"/><label for="user-remember-me">Remember<span class="hide"> me</span></label>
+            <small><%= link_to "Reset password", new_user_password_path %></small>
+          </p>
+        
+          <fieldset class="actions">
+            <button class="button green"><b>Log In</b></button>
+          </fieldset>
+          
+        <% end %>
+      </div>
+        
+    </div>
+
+  </div>
+
+  <header id="main">
+    <div class="wrap">
+  
+      <nav>
+        <span class="burger">Menu</span>
+        <ul>
+          <li class="home <%= 'active' if action_name == 'index' %>"><a href="/">Home</a></li>
+          <li class="<%= 'active' if action_name == 'features' %>" ><a href="/features">Features</a></li>
+          <li class="<%= 'active' if action_name == 'pricing' %>"><a href="/pricing">Pricing</a></li>
+          <li class="<%= 'active' if action_name == 'showcase' %>"><a href="/showcase">Showcase</a></li>
+        </ul>
+        <ul>
+          <li class="<%= 'active' if action_name == 'static' %>" ><a href="/static">Static?</a></li>
+          <li class="<%= 'active' if action_name == 'support' %>"><a href="/support">Support</a></li>
+          <li class="<%= 'active' if action_name == 'blog' %>"><a href="http://blog.beach.io">News</a></li>
+        </ul>
+      </nav>
+      
+    </div>
+    
+    <a href="<%= new_user_registration_path %>" id="sign-in" class="button user login">Log In</a>
+  </header>

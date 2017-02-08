@@ -1,0 +1,20 @@
+yes|as-delete-auto-scaling-group ForgeGroup --force-delete
+yes|as-delete-launch-config Forge
+
+as-create-launch-config Forge --image-id ami-09f8a760 --instance-type m1.small --key elliott-riot --group asgard-node 
+
+# --user-data-file startup
+
+# For just once
+# as-create-auto-scaling-group ForgeGroup --launch-configuration Forge --availability-zones us-east-1a --min-size 1 --max-size 1
+
+until as-create-auto-scaling-group ForgeGroup --launch-configuration Forge --availability-zones us-east-1a --min-size 1 --max-size 1
+do
+  echo ""
+  echo "Trying again..."
+  sleep 1
+done
+
+say done
+
+as-describe-auto-scaling-groups --headers

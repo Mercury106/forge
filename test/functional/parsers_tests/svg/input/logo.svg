@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="94px" height="94px" viewBox="0 0 94 94" version="1.1">
+    <style>
+      * { shape-rendering: geometricPrecision; }
+    svg:hover .svg-fill { fill: #E77C00; } 
+    svg:hover .svg-stroke { stroke: #E77C00; }
+    path { transition: all .8s; -o-transition: all .8s; -moz-transition: all .8s; -webkit-transition: all .8s; }
+  </style>
+    <title>OnRamp Web Design logo</title>
+    <defs/>
+
+  <a xlink:href="/test/two.html" target="_parent"></a>
+  <a xlink:href="/index.html" target="_parent">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g>
+        <path d="M47 89 C70.2 89 89 70.2 89 47 C89 23.8 70.2 5 47 5 C23.8 5 5 23.8 5 47 C5 70.2 23.8 89 47 89 ZM47 89 " fill-opacity="0" fill="#F5F5F5"/>
+        <path class="svg-fill" d="M44 16 L44 23 L47 23 L47 16 L44 16 ZM44 16 " fill="#000000"/>
+        <path class="svg-fill" d="M44 28 L44 35 L47 35 L47 28 L44 28 ZM44 28 " fill="#000000"/>
+        <path class="svg-fill" d="M44 40 L47 40 L47 41.3 C47 42.4 47.4 48 50.8 54 C53 57.5 55.2 59.5 55.2 59.5 L68 72.7 L65.5 75 C65.5 75 61.3 70.8 57.1 66.3 C53.7 62.8 50.3 59.2 49.1 57.3 C47.6 54.8 47.1 54.1 47 54 L47 78 L44 78 ZM44 40 " fill="#000000"/>
+        <path class="svg-fill" d="M33 34.3 L33 75 L24 75 L24 34.4 C21.4 35.1 18.9 36 17.6 36 C17.3 36 17.1 35.8 16.9 35.7 C16.3 35.3 16.1 34.7 16.1 34.3 C16.1 34 16.2 33.8 16.2 33.8 L28.6 17 L40.7 33.4 C40.7 33.4 41 33.7 41 34.4 C40.9 34.7 40.8 35.1 40.6 35.5 C39.9 36.7 36.7 35.3 33 34.3 ZM33 34.3 " fill="#000000"/>
+        <path class="svg-fill" d="M62.5 17 L74.8 33.7 C74.8 33.7 75.3 34.5 74.3 35.5 C74.2 35.7 73.6 36 73.3 36 C72.8 36 67.3 34.3 67.3 34.3 C67.3 34.3 67 34.3 66.6 34.3 C66.6 35.6 66.6 39.8 66.6 39.9 C66.6 39.9 66.7 41.5 68.2 43 C69.7 44.5 82 56.4 82 56.4 L75.3 63 C75.3 63 65.8 53.9 60.5 48.3 C59.5 47.2 58.8 45.9 58.3 44.7 C57.8 43.7 57.6 42.6 57.3 41.7 C57.3 41.6 57.2 40.7 57.2 40.7 L57 34.5 C55.6 34.9 52.6 35.7 52.6 35.7 C52.6 35.7 52.1 35.9 51.4 35.9 C50.8 35.8 50.4 35.5 50.3 35.1 C49.9 34.3 50.3 33.5 50.3 33.5 ZM62.5 17 " fill="#000000"/>
+        <path class="svg-stroke" d="M47 91 C71.3 91 91 71.3 91 47 C91 22.7 71.3 3 47 3 C22.7 3 3 22.7 3 47 C3 71.3 22.7 91 47 91 ZM47 91 " stroke="#000000" stroke-width="5"/>
+      </g>
+    </g>
+  </a>
+</svg>

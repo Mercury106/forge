@@ -1,0 +1,120 @@
+<header id="title">
+  <hgroup>
+    <a href="/"><strong id="logo">Forge</strong></a>
+    <h1>Customer Showcase</h1>
+    <p>Celebrating our talented developer community</p>
+    <div class="sign-up">
+      <%= link_to new_user_registration_url, :class => "register button" do %>
+        <b>Sign Up</b> for free
+      <% end %>
+      <small class="cc">Or <a href="<%= new_user_registration_path %>" class="login">Log In</a> now</small>
+    </div>
+  </hgroup>
+</header>
+
+<section id="showcase" class="grade">
+  <div class="wrap">
+
+    <article>
+
+    <div class="case-container">
+      <div class="case" style="background-image: url(<%= image_path "public/rodrigo.jpg" %>);">
+        <div class="case-text">
+          <div class="case-text-name">
+            Rodrigo Borges
+          </div>
+          <div class="case-text-specialization">
+            Web Designer at <a href="http://themenom.com/">Themenom</a>
+          </div>
+          <div class="case-text-comment">
+            I published my first Themeforest template in 2012, after a few rejects, I was thrilled to be accepted. I continue to this day, to publish templates regularlly.
+          </div>
+        </div>
+        <div class="case-quote">
+          Hammer was the simplest and most productive app I tried out to help me build HTML websites.
+        </div>
+
+        <div class="case-preview">
+        </div>
+      </div>
+        <div class="case-tools">
+          <div class="case-hammer"><span>Uses Hammer</span></div>
+        </div>
+      </div>
+      <div class="case-container">
+      <div class="case case-left" style="background-image: url(<%= image_path "public/kristian.jpg" %>);">
+        <div class="case-text">
+          <div class="case-text-name">
+            Kristian<br/> Andersen
+          </div>
+          <div class="case-text-specialization">
+            Front End Developer at <a href="http://robo.cat/">Robo.cat</a>
+          </div>
+          <div class="case-text-comment">
+            Static websites can really be a pain to work on, but these 3 products really make them so much easier to create.
+          </div>
+        </div>
+        <div class="case-preview">
+         <a href="http://bemyeyes.org" target="_blank"><img src="<%= image_path "public/christians_site.png" %>"></a>
+        </div>
+      </div>
+        <div class="case-tools">
+          <div class="case-forge"><span>Uses Forge</span></div>
+          <div class="case-hammer"><span>Uses Hammer</span></div>
+          <div class="case-anvil"><span>Uses Anvil</span></div>
+        </div>
+      </div>
+      <div class="case-container">
+      <div class="case case-right" style="background-image: url(<%= image_path "public/mikko.jpg" %>);">
+        <div class="case-text">
+          <div class="case-text-name">
+            Mikko <br/>Jarvenpaa
+          </div>
+          <div class="case-text-specialization">
+            CEO at <a href="https://infogr.am" target="_blank">Infogram</a>
+          </div>
+          <div class="case-text-comment">
+
+          </div>
+        </div>
+        <div class="case-quote">
+          It was love at first update. The UI is incredible. This was the best deployment experience ever.
+        </div>
+        <div class="case-preview">
+
+        </div>
+      </div>
+        <div class="case-tools">
+          <div class="case-forge"><span>Uses Forge</span></div>
+        </div>
+      </div>
+      <div class="case-container">
+      <div class="case case-left" style="background-image: url(<%= image_path "public/mikkel.jpg" %>);">
+        <div class="case-text">
+          <div class="case-text-name">
+            Mikkel <br/>Aggerbo
+          </div>
+          <div class="case-text-specialization">
+            Designer & Founder at <a href="https://www.smartplan.dk/" target="_blank">Smartplan</a>
+          </div>
+          <div class="case-text-comment">
+            Our SaaS site is based on Hammer, we would not have been able to execute our static site as fast and elegant as the case is with Hammer.
+          </div>
+        </div>
+        <div class="case-preview">
+          <a href="https://trysmartplan.com" target="_blank"><img src="<%= image_path "public/mikkels_site.png" %>"></a>
+        </div>
+
+      </div>
+        <div class="case-tools">
+           <div class="case-hammer"><span>Uses Hammer</span></div>
+        </div>
+      </div>
+
+
+
+
+    </article>
+
+  </div>
+</section>

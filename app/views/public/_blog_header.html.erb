@@ -1,0 +1,13 @@
+<header id="title">
+  <hgroup>
+    <a href="/"><strong id="logo">Forge</strong></a>
+    <h1>Forge Blog</h1>
+    <p>All the latest updates on Forge</p>
+    <div class="sign-up">
+      <%= link_to new_user_registration_url, :class => "register button" do %>
+        <b>Sign Up</b> for free
+      <% end %>
+      <small class="cc">Or <a href="<%= new_user_registration_path %>" class="login">Log In</a> now</small>
+    </div>
+  </hgroup>
+</header>

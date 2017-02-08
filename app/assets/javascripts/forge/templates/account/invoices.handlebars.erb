@@ -1,0 +1,35 @@
+<section id="invoices">
+  <h2>Your Invoices</h2>
+
+  {{#unless content}}
+    <center>{{view App.SpinnerView}}</center>
+  {{/unless}}
+
+  {{#each this}}
+    <div class="invoice">
+
+      <p>
+        Invoice #<span class="invoice-id">{{id}}</span> 
+        {{#if paid}}<small class="paid">Paid</small>{{/if}}
+        <time>From <b>{{toTime period_start}}</b> - To <b>{{toTime period_end}}</b></time>
+      </p>
+
+      <ul class="lines">
+        {{#each invoiceLines}}
+          <li>
+            {{#if description}}
+              {{description}}
+            {{else}}
+              {{capitalize type}}
+              {{#if plan}} - {{plan.name}} Plan{{/if}}
+            {{/if}} 
+            <span class="subtotal">{{toMoney amount}}</span>
+          </li>
+        {{/each}}
+      </ul>
+
+      <span class="total">Total: {{toMoney total}}</span>
+      
+    </div>
+  {{/each}}
+</section>

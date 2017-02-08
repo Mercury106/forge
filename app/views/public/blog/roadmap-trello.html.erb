@@ -1,0 +1,64 @@
+<%= render 'blog_header' %>
+
+<section id="blog" class="grade">
+  <div class="wrap">
+    
+    <article>
+    
+      <hgroup>
+        <h2><a href="#none">"Opening the Roadmap for Forge"</a></h2>
+        <time>26th June, 2015</time>
+      </hgroup>
+      
+      
+      
+      <div class="post">
+
+        <span class="image" style="background-image: url(/assets/public/blog_banner_roadmap.png)" data-style="background-image: url(/assets/public/blog_banner_roadmap.png)" data-retina-style="background-image: url(/assets/public/blog_banner_roadmap@2x.png)"><a href="http://bit.ly/forge-roadmap"></a></span>
+      
+        <p>I really like services that openly share their inner workings, thoughts and experiences. I'd like any service that I work on to be exactly the same.</p>
+      
+        <p>Some of the best web services have very open and collaborative roadmaps, where you can easily understand what's on the horizon for the product and most importantly, have your say in how the product should evolve to meet your needs.</p>
+        
+        <p>Among those services which use the same mechanics are <a href="https://trello.com/b/hjBDflxp/meteor-roadmap">Meteor</a>, <a href="https://trello.com/b/LCDud1Nd/brackets">Brackets</a>, and of course, <a href="https://trello.com/b/nC8QJJoZ/trello-development">Trello</a> themselves.</p>
+
+        <p>So, we are also going to make all of our Product roadmaps public and <a href="http://bit.ly/forge-roadmap">we start with Forge.</a> Right now, we're reviewing every aspect of the service, so it's a great time to make yourself heard and contribute to the process.</p>
+				
+        <%= link_to href: 'http://bit.ly/forge-roadmap' do %>
+    			<%= image_tag("/assets/public/forge-roadmap.png", :class => "content-image") %>
+				<% end %>
+
+        <p>Trello is a great and simple tool, but it's very flexible, so checkout the Info column for our guidelines.</p>
+
+        <%= link_to href: 'https://trello.com/c/rBL1llrr/1-what-can-you-expect-from-this-board' do %>
+    			<%= image_tag("https://trello.com/c/rBL1llrr.png", :class => "Trello Guidelines") %>
+				<% end %>
+
+        <p>
+        	
+        </p>
+
+        <p><strong>Voting</strong> Every card has voting enabled. If you like what someone else has suggested, give it a vote. We take votes as a very strong indicator of popularity for a new feature or request and we use this to prioritise.</p>
+
+        <%= image_tag("/assets/public/trello-vote.png") %>
+
+        <p>We've already gathered lots of great ideas from the <a href="http://bit.ly/hammer-forge-survey">Customer Survey</a> we put out this week. Which, by the way, you can still take part in. Thanks to all of those that have done so already, it's incredibly helpful.</p>
+
+        <p>
+      		
+        <p>
+          <center>
+            <%= link_to new_user_registration_url, :class => "register button" do %>
+              <b>Host Your Website</b> with Forge!
+            <% end %>
+          </center>
+        </p>
+
+      </div>
+      
+    </article>
+  
+  </div>
+</section>
+
+<%= render 'try' %>

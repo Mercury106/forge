@@ -1,0 +1,6 @@
+<div class="sheet" {{bind-attr id="view.sheetId"}} {{bind-attr class="App.showingModal:animate"}}>
+  <div class="sheet-overlay" {{action 'closeModal'}}></div>
+  <div class="viewport">
+    {{yield}}
+  </div>
+</div>

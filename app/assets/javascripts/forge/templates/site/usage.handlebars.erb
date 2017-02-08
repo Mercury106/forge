@@ -1,0 +1,41 @@
+<div id="content">
+  <section>
+    
+    <h2>Site Bandwidth</h2>
+    
+    <p>Below is the bandwidth usage for <b>{{#with url}}{{this unbound}}{{/with}}</b>. Please be aware that your Forge account is billed according to the total bandwidth across <i>all of your sites</i>. The fewer assets your sites use, the less bandwidth you'll use.</p>
+    
+    <div class="usage-numbers billing">
+      <p><label>Bandwidth this month</label> <strong>{{bytesToSize content.bandwidth.this_month}}</strong></p>
+    </div>
+
+    <div class="usage-numbers summary">
+      <div class="number">
+        <p class="three"><strong>{{bytesToSize content.bandwidth.today}}</strong> <span>today</span></p>
+      </div>
+      <div class="number">
+        <p class="three"><strong>{{bytesToSize content.bandwidth.week}}</strong> <span>this week</span></p>
+      </div>
+      <div class="number">
+        <p class="three"><strong>{{bytesToSize content.bandwidth.month}}</strong> <span>last 30 days</span></p>
+      </div>
+    </div>
+    
+  </section>
+  
+  <section>
+    
+    <h2>Historical Usage</h2>
+    
+    <table>
+      {{#each bandwidth.previous_months}}
+      <tr>
+        <td><strong>{{month}}</strong></td>
+        <td>&nbsp;{{bytesToSize bandwidth}}</td>
+      </tr>
+      {{/each}}
+      
+    </table>
+
+  </section>
+</div>

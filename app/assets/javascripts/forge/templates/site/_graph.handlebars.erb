@@ -1,0 +1,19 @@
+<div id="bandwidth">
+
+  <div id="graph">
+    {{#unless loaded}}
+      {{view App.SpinnerView}}
+    {{/unless}}
+    {{#if loaded}}
+      {{#unless site_usages}}
+        <div id="no-graph">There isn't enough data to display a bandwidth graph.</div>
+      {{/unless}}
+    {{/if}}
+  </div>
+  
+  {{#if site_usages}}
+    {{#if view.bytes}}
+      {{renderDate view.start_date}} - {{renderDate view.end_date}}: {{bytesToSize view.bytes}}
+    {{/if}}
+  {{/if}}
+</div>

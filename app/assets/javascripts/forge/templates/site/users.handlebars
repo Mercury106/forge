@@ -1,0 +1,74 @@
+<div id="content">
+  <section id="site-users">
+    <h2>
+      Collaborators
+      <div class="typefrom_help dark first-time" style="float: right;">
+        <a class="typeform-share link" href="https://r3trosteve.typeform.com/to/RhvHLf" data-mode="1" target="_blank"></a>
+      </div>
+    </h2>
+    <ul>
+      {{#unless siteUsersLoaded}}
+        <li>
+          <span>&nbsp;</span>
+          {{view App.SpinnerView}}
+        </li>
+      {{/unless}}
+
+      {{#each site_users}}
+        <li {{bind-attr class="errors.email:error"}}>
+          {{#if email}}
+            {{view App.AvatarView emailBinding="email"}}
+            {{email}}
+            {{#if owner}}
+              <small class="owner">Owner</small>
+            {{/if}}
+          {{else}}
+            {{view App.SpinnerView}}
+            {{email}} 
+          {{/if}}
+          {{#if errors}}
+            <a href="#none" class="button red icon delete" {{action "deleteUser" this}}>Remove</a>
+            <ul class="error">
+              {{#each errors.user_id}}
+                <li>This user {{this}}</li>
+              {{/each}}
+              {{#each errors.email}}
+                <li>This email {{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+          
+          {{#unless errors}}
+            {{#unless owner}}
+              {{#unless errors}}
+                {{#if id}}
+                  <a href="#none" class="button red icon delete" {{action "deleteUser" this}}>Remove</a>
+                {{/if}}
+              {{/unless}}
+            {{/unless}}
+          {{/unless}}
+        </li>
+      {{/each}}
+      
+      
+    </ul>
+
+    <form>
+      <fieldset>
+        {{view App.AvatarView emailBinding="newUserEmail"}}
+        {{view Ember.TextField valueBinding="newUserEmail" action="addNewUser" classBinding="newUserError:error"}}
+        <button {{bind-attr class="newUserEmail:green newUserSaving:saving :button newUserSaving:saving"}} {{action 'addNewUser'}}>
+          {{#if newUserSaving}}
+            {{view App.SpinnerView color="#fff"}}
+          {{/if}}
+          <span>Add User</span>
+        </button>
+      </fieldset>
+    </form>
+    
+    {{#if newUserError}}
+      <center><span class="error">{{newUserError}}</span></center>
+    {{/if}}
+  </section>
+</div>
+<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>

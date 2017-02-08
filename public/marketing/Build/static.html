@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Forge is a brand-new way of hosting static websites. Static web hosting made simple.">
+  
+  <meta property="og:title" content="Forge - Static hosting made simple"/>
+  <meta property="og:site_name" content="Forge"/>
+  <meta property="og:image" content="assets/images/facebook.jpg"/>
+  <meta property="og:description"content="Forge is a brand-new way of hosting static websites. Static web hosting made simple." />
+    
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700" rel="stylesheet" type="text/css">
+  
+  <link rel='stylesheet' href='assets/css/normalize.css'>
+<link rel='stylesheet' href='assets/css/style.css'>
+<link rel='stylesheet' href='assets/css/modal.css'>
+  <script src='assets/js/jquery-2.0.2.min.js'></script>
+<script src='assets/js/waypoints.js'></script>
+<script src='assets/js/login.js'></script>
+<script src='assets/js/main.js'></script>
+  
+  <link href="assets/favicon.ico" rel="shortcut icon">
+  <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+    
+  <title>Forge - Why go static?</title>
+  
+  <!-- Google Analytics Missing -->
+  
+</head>
+
+<body>
+
+    <div id="overlay"></div>
+
+  <div id="modal">
+
+    <div class="viewport">
+    
+      <div id="register">
+
+        <form accept-charset="UTF-8" action="#" class="new_user" id="new_user" method="post">
+        
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <input name="authenticity_token" type="hidden" value="1aJSEoitqSure6xP/PIBP9zyaJMLriKvii+VPSn4nyk=" />          
+          
+          <fieldset>
+            <label for="user_name">Name</label>
+            <input id="user_name" name="user[name]" placeholder="Elliott Kember" type="text" value="user-205313" />
+          </fieldset>
+
+          <fieldset>
+            <label for="user_email">Email</label>
+            <input id="user_email" name="user[email]" placeholder="elliott@riothq.com" type="email" value="205313@riothq.com" />
+          </fieldset>        
+        
+          <fieldset>
+            <label for="user_password">Password</label>
+            <input id="user_password" name="user[password]" placeholder="********" type="password" value="testing" />
+          </fieldset>
+          
+          <fieldset class="actions">
+            <button class="button green"><b>Get Started</b></button>
+          </fieldset>
+          
+        </form>
+                  
+      </div>
+            
+      <div id="login" class="show">
+      
+        <form accept-charset="UTF-8" action="#" method="post">
+        
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <input name="authenticity_token" type="hidden" value="1aJSEoitqSure6xP/PIBP9zyaJMLriKvii+VPSn4nyk=" />
+          
+          <fieldset>
+            <label for="user-email">Email</label>
+            <input type="email" name="session[email]" id="user-email" placeholder="elliott@riothq.com"></input>
+          </fieldset>
+          
+          <fieldset>
+            <label for="user-password">Password</label>
+            <input type="password" id="user-password" name="session[password]" placeholder="*******"></input>
+          </fieldset>
+          
+          <p class="remember">
+            <input id="user-remember-me" type="checkbox" checked="checked" name="session[remember_me]"/><label for="user-remember-me">Remember<span class="hide"> me</span></label>
+            <small><a href="/users/password/new">Reset password</a></small>
+          </p>
+        
+          <fieldset class="actions">
+            <button class="button green"><b>Log In</b></button>
+          </fieldset>
+          
+        </form>
+        
+      </div>
+        
+    </div>
+
+  </div>
+
+  <header id="main">
+    <div class="wrap">
+  
+      <nav>
+  <span class="burger">Menu</span>
+  <ul>
+    <li class="home"><a href="/">Home</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+  </ul>
+  <ul>
+    <li class='current'><a class='current' href="static.html">Static?</a></li>
+    <li><a href="support.html">Support</a></li>
+    <li><a href="blog/index.html">Blog</a></li>
+  </ul>
+</nav>
+      
+    </div>
+    <a href="#" id="sign-in" class="button user login">Log In</a>
+  </header> 
+
+  <!-- Title -->
+  <header id="title">
+    <hgroup>
+      <a href="/"><strong id="logo">Forge</strong></a>
+      <h1>Why go static?</h1>
+      <p>Static websites with Forge are the future</p>
+      <div class="sign-up">
+  <a class="register button" href="#"><b>Sign Up</b> for free</a>
+  <small class="cc">Or <a href="#" class="login">Log In</a> now</small>
+</div>
+    </hgroup>
+  </header>
+  
+  <!-- Secret -->
+  <section id="secret" class="grade">
+    <div class="wrap">
+    
+      <hgroup>
+        <h1>Static brings the thunder and Forge is as fast as lightning.</h1>
+      </hgroup>
+      
+      <ol>
+        <li>Many of today's sites use <em>slow programming languages</em> and <em>database calls</em> on the server to compile and serve up your sites.</li>
+        <li><span class="special">But there's a secret to better performance.</span></li>
+        <li>By taking your site static, you can be sure that your web pages will <em>always be insanely fast</em>. No servers or database queries to worry about.</li>
+      </ol>
+    
+    </div>
+  </section>
+  
+  <!-- Reasons -->
+  <section id="reasons" class="grade reverse">
+    <div class="wrap">
+    
+      <hgroup>
+        <h1>Why is static a better way to build and host my website?</h1>
+      </hgroup>
+      
+      <article class="speed">
+        <p><strong>Speed</strong> Every time your visitors have to wait for a page to load, they're one click away from leaving. A static site can be served much, much quicker.</p>
+      </article>
+      
+      <article class="control">
+        <p><strong>Control</strong> Take control over your markup and create and update it your way. Static sites are about the craftsman and their tools, not systems and data.</p>
+      </article>
+      
+      <article class="robust">
+        <p><strong>Robustness</strong> By decoupling your sites from servers and databases you're removing overhead and making your site as performant as it can be.</p>
+      </article>
+    
+    </div>
+  </section>
+  
+  <!-- Call-out -->
+  <aside class="call-out">
+    <div class="wrap">
+    
+      <p>
+        <span>Static is the way websites should be made. <b>Forge</b> is the place they should be hosted.</span>
+        <a class="register button" href="#"><b>Sign Up</b> for free</a>
+      </p>
+      
+    </div>
+  </aside>
+  
+  <!-- Hammer -->
+  <section id="hammer">
+    <div class="wrap">
+    
+    	<div class="left">
+    
+  	    <hgroup>
+  	      <h1>Hammer for Mac</h1>
+  	      <p>We built Hammer especially for front-end developers working with static webpages and builds.</p>
+  	    </hgroup>
+  	    
+  	    <p>Use Hammer on the Mac to create your static websites and publish to Forge with a simple drag and drop. <a href="http://hammerformac.com" target="_blank">Find out more</a>.</p>
+  	    
+  	    <p><a href="http://hammerformac.com" target="_blank" class="button blue app"><b>Download</b> Hammer</a></p>
+  	    
+  	  </div>
+  	  
+  	  <div class="right">
+  	  
+  	  	<span class="screenshot"></span>
+  	  
+  	  </div>
+    
+    </div>
+  </section>
+  
+  <!-- Try -->  
+    <!-- Try -->
+  <section id="try" class="grade">
+    <div class="wrap">
+    
+      <hgroup>
+        <h1>Give Forge a try for free right now and see how you get on!</h1>
+        <p>When you sign up you'll have one site available with a 5GB per month bandwidth cap. Upgrading to a Basic account lets you create up to 5 sites using your own custom domains with uncapped bandwidth (billed at 20&cent; / GB over a 10GB threshold).</p>
+      </hgroup>
+      
+      <div class="table">
+        <ul class="basic">
+          <li><strong>Basic</strong></li>
+          <li><em>$10</em></li>
+          <li>5 sites</li>
+          <li>10GB bandwidth / month</li>
+        </ul>
+        <ul class="pro">
+          <li><strong>Pro</strong></li>
+          <li><em>$20</em></li>
+          <li>20 sites</li>
+          <li>40GB bandwidth / month</li>
+        </ul>
+        <small>Additional bandwidth billed at 20&cent; / GB</small>
+      </div>
+  
+      <p class="info">More information is available on our <a href="pricing.html">pricing page</a></p>
+      
+      <div class="cta">
+        <p>
+          <a class="register button" href="#"><b>Sign Up</b> for a free trial with Forge</a>
+          <small class="cc">No credit card required</small>
+        </p>
+      </div>
+      
+      <div id="tweet-promo">
+  <p>
+    <span>Follow our updates on Twitter and be sure to send us your feedback!</span>
+    <a href="https://twitter.com/getforge" class="twitter-follow-button" data-show-count="false" data-size="large" data-related="getforge" data-dnt="true" >Follow @getforge</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <a href="https://twitter.com/intent/tweet?screen_name=getforge" class="twitter-mention-button" data-size="large" data-related="getforge" data-dnt="true">Tweet to @getforge</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </p>
+</div>
+  
+    </div>
+  </section>
+  
+  <footer>
+    <div class="wrap">
+      
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li class='current'><a class='current' href="static.html">Static?</a></li>
+          <li><a href="support.html"> Support</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+        <small id="riot"><a href="http://riothq.com">Made by Riot</a></small>
+      </nav>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>

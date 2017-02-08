@@ -1,0 +1,76 @@
+.settings
+  *
+    box-sizing: border-box
+
+
+  .hooks-list
+    display: flex
+    max-width: 752px
+    flex-flow: column nowrap
+
+
+
+    > div
+      display: flex
+      flex: 0 0 auto
+      padding: 11px 19px
+      cursor: pointer
+
+      &.hooks-list-header
+        cursor: default
+
+
+      &:nth-child(2n-1)
+        background: #F8F8F8
+
+      &:hover:not(.hooks-list-header)
+        background: #F1F1F1
+      > div
+        text-align: left
+        overflow: hidden
+        text-overflow: ellipsis
+    .hook-method
+      flex: 3 0
+      padding: 0 5px
+
+
+    .hook-url
+      flex: 6 0
+      padding: 0 0 0 10px
+    .hook-event
+      flex: 4 0
+      padding: 0 5px
+    .hook-timestamp
+      flex: 4 0
+      padding: 0 5px
+
+    .delete-webhook
+      flex: 1 0
+      padding: 0 4px
+      visibility: hidden
+      text-align: right
+      font-size: 14px
+      opacity: 0.3
+      cursor: pointer
+      &:hover
+        opacity: 0.7
+
+    .edit-icon
+      flex: 1 0
+      padding: 4px 4px
+      img
+        visibility: hidden
+
+    & > div:hover
+      .delete-webhook
+        visibility: visible
+
+
+  h4
+    button
+      float: right
+      margin-right: 0 !important
+
+#event-select
+  .empty + input
+    outline: 1px solid red

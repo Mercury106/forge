@@ -1,0 +1,80 @@
+.forms
+  *
+    box-sizing: border-box
+
+
+  h2
+    span
+      float: left
+      // &.csv
+      //   &:before
+
+  &-list
+    display: flex
+    flex-flow: column nowrap
+
+    > div, a
+      display: flex
+      flex: 0 0 auto
+      padding: 11px 19px
+      &:nth-child(2n-1)
+        background: #F8F8F8
+    > a
+      color: #333
+      &:hover
+        text-decoration: none
+        background: #f1f1f1
+
+      &:visited
+        color: #333
+
+
+    .form-active
+      flex: 1 0
+      padding: 0 5px
+      text-align: center
+
+    .form-name
+      flex: 4 0
+      padding: 0 0 0 10px
+      text-align: left
+    .form-email
+      flex: 4 0
+      padding: 0 5px
+      text-align: left
+    .form-notifications
+      flex: 2 0
+      padding: 0 5px
+      text-align: center
+    .form-autoresponse
+      flex: 2 0
+      padding: 0 10px 0 0
+      text-align: center
+
+
+    &-header
+      display: flex
+      flex-flow: row nowrap
+      font-weight: 700
+      justify-content: space-between
+
+
+    &-item
+      flex: 1 0 auto
+      display: flex
+      flex-flow: row nowrap
+      justify-content: space-between
+
+      .enabled
+        color: #88bf08
+        &:before
+          content: "✔"
+
+      .disabled
+        color: #aaa
+        &:before
+          content: "✖"
+
+
+
+

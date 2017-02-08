@@ -1,0 +1,8 @@
+<ul>
+  <% versions.each do |version| %>
+    <li>
+      <%= link_to "Version ##{version.scoped_id}", admin_version_path(version) %> 
+      (<%= number_to_human_size version.upload.size %>)
+    </li>
+  <% end %>
+</ul>

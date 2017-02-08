@@ -1,0 +1,22 @@
+<form>
+  <h2>Previous Invoices:</h2>
+  <fieldset>
+    <table>
+      <% @invoices.each do |invoice| %>
+        <tr>
+          <td>
+            <%= Time.at(invoice.period_start).strftime("%d %B") %> 
+            - 
+            <%= Time.at(invoice.period_end).strftime("%d %B") %>
+          </td>
+          <td>
+            $<%= invoice.total/100 %>
+            <% if !invoice.paid %>
+              <strong>UNPAID</strong>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </fieldset>
+</form>

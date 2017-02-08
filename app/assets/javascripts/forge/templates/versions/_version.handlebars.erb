@@ -1,0 +1,139 @@
+<div class="left">
+  {{! We're looking at the "current" version }}
+  {{#if isCurrentVersion}}
+
+    {{! We're waiting for the task to start }}
+    {{#if waiting}}
+      <label class="deploying">Deploying</label>
+      <button class="deploying">{{view App.SpinnerView}}</button>
+      <p class="deploying">
+        <strong>Version #{{scoped_id}}</strong>
+        <span class="progress waiting">Waiting for deployment...</span>
+      </p>
+      <div {{action 'checkLog'}} class="console">
+      </div>
+    {{/if}}
+
+    {{! The task has started and we're deploying to the servers }}
+    {{#if isBeingDeployed}}
+      <label class="deploying">{{percent_deployed}}%</label>
+      <button class="deploying">{{view App.SpinnerView}}</button>
+      <p class="deploying">
+        <strong>Version #{{scoped_id}}</strong>
+        <span class="track">
+          <span class="bar" {{bind-attr style="widthStyle"}}></span>
+        </span>
+      </p>
+      <div {{action 'checkLog'}} class="console">
+      </div>
+    {{/if}}
+
+    {{! The process has finished deploying this site }}
+    {{#if hasFinishedDeploying}}
+      <label class="live">Live</label>
+      <button class="redploy green">Redeploy</button>
+      <p class="live">
+        <strong>Version #{{scoped_id}}</strong>
+        <time>Uploaded {{timeago created_at}}</time>
+      </p>
+    {{/if}}
+
+  {{else}}
+
+    {{#if olderThanCurrentVersion}}
+      <label>Roll back?</label>
+    {{else}}
+      <label>Deploy?</label>
+    {{/if}}
+    <button class="go-live" {{action 'deployVersion' this}}>Go live</button>
+    <p>
+      <strong>Version #{{scoped_id}}</strong>
+      <time>Uploaded {{timeago created_at}}</time>
+    </p>
+
+  {{/if}}
+
+</div>
+
+<div class="right">
+  <div class="comment">
+    {{#if editing}}
+      {{view Ember.TextArea valueBinding="newDescription" action="saveDescription"}}
+      <button {{action saveDescription}}>Save</button>
+    {{else}}
+      <p {{action startEditing}}>{{#unless description}}<span class="none">Click to add a description</span>{{/unless}}{{description}}</p>
+      <small {{action startEditing}}><a href="#none">Edit</a></small>
+    {{/if}}
+  </div>
+
+  {{#if showingChanges}}
+    <a {{action toggleProperty 'showingChanges'}} href="#none" class="show-changes">Hide Changes</a>
+    <div class="files">
+      {{#with diff}}
+        {{#if modified}}
+          <h4>{{modified.length}} Modified</h4>
+          <ul class="modified">
+            {{#each modified}}
+              <li>{{unbound splitFilename this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+        {{#if added}}
+          <h4>{{added.length}} Added</h4>
+          <ul class="added">
+            {{#each added}}
+              <li>{{unbound splitFilename this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+        {{#if deleted}}
+          <h4>{{deleted.length}} Deleted</h4>
+          <ul class="removed">
+            {{#each deleted}}
+              <li>{{unbound splitFilename this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/with}}
+    </div>
+  {{/if}}
+
+  {{#if view.hasChanges}}
+    {{#unless showingChanges}}
+      <a {{action toggleProperty 'showingChanges'}} href="#none" class="show-changes">
+        {{#if diff}}
+          {{#with diff}}
+            {{#if modified.length}}
+              {{integer modified_total}} changed{{#if added_total}},{{/if}}
+            {{/if}}
+            {{#if added.length}}
+              {{integer added_total}} added{{#if deleted_total}},{{/if}}
+            {{/if}}
+            {{#if deleted.length}}
+              {{integer deleted_total}} removed.
+            {{/if}}
+          {{/with}}
+        {{/if}}
+      </a>
+    {{/unless}}
+  {{else}}
+    <span class="no-changes">
+      {{#if diff}}No changes.{{else}}&nbsp;{{/if}}
+    </span>
+  {{/if}}
+
+  {{#if live}}
+    <div {{bind-attr class=":actions active:visible"}}>
+      <a href="#none" {{action downloadVersion this}} class="download">Download ZIP</a>
+    </div>
+  {{/if}}
+
+  {{#unless live}}
+    {{#unless isBeingDeployed}}
+    <div {{bind-attr class=":actions active:visible"}}>
+      <a href="#none" {{action downloadVersion this}} class="download">Download ZIP</a>
+      <a href="#none" {{action deleteVersion this}} class="delete">Delete Version</a>
+    </div>
+    {{/unless}}
+  {{/unless}}
+</div>

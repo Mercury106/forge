@@ -1,0 +1,84 @@
+<div id="site-dropbox" {{bind-attr class="dropbox_path:center :source-section"}}>
+  {{#unless account.isLoaded}}
+    <div class="loading">
+      {{view App.SpinnerView}}
+    </div>
+  {{else}}
+    {{#unless account.dropbox_token}}
+      <div class="authorize">
+        <button class="dropbox large authorize" {{action 'authenticateDropbox'}}>Authorize Dropbox</button>
+        <small>Forge will only have access to the Dropbox folders you give us access to.</small>
+      </div>
+    {{else}}
+      {{#if showBrowser}}
+        <div id="dropbox-browser" class="source-browser">
+          <hgroup>
+            <h3>Choose a folder to sync <a href="#none" class="cancel" {{action "hideBrowser"}}>Cancel</a></h3>
+            
+              <div class="nav">
+                <div class="breadcrumb">
+                  {{#if directory}}
+                    <span class="root" {{action 'backToHome'}}>Dropbox</span>
+                  {{else}}
+                    <span class="root open" {{action 'backToHome'}}>Dropbox</span>
+                  {{/if}}
+                  {{#each pathComponents}}
+                    <span {{action setPath this}}>
+                      {{lastPathComponent this}}
+                    </span>
+                  {{/each}}
+                </div>
+                
+                {{#if directory}}
+                  <button class="choose dropbox" {{action 'chooseCurrentDirectory'}}>Choose this folder</button>
+                {{/if}}
+                
+              </div>
+            
+            {{view Ember.TextField valueBinding="view.query" type="text" name="name" placeholder="Filter"}}
+          </hgroup>
+          
+          {{#if view.directories}}
+            <ul id="dropbox-contents">
+            {{#each view.directories}}
+              {{#if is_dir}}
+                <li {{bind-attr class="is_dir:directory:file"}}>
+                  <span class="folder"><a {{action "changeDirectory" path}}{{lastPathComponent path}}</a></span>
+                  <button {{action "selectDirectory" path}}>Choose folder</button>
+                </li>
+              {{else}}
+                <li>
+                  <span class="file">{{lastPathComponent path}}</span>
+                  <small class="size">{{size}}</small>
+                </li>
+              {{/if}}
+            {{/each}}
+            </ul>
+          {{else}}
+            <div class="loading">
+              {{view App.SpinnerView}}
+            </div>
+          {{/if}}
+          
+        </div>
+      {{else}}
+        <div class="source-browser syncing">
+          <a href="#none" {{action 'openBrowser'}} class="dropbox-path">{{formatDropboxPath dropbox_path}}</a>
+          <p><b>{{url}}</b> is syncing with <b>{{formatDropboxPath dropbox_path}}</b></p>
+          <button {{action "openBrowser"}}>Change Dropbox Folder...</button>
+          <fieldset class="dropbox-autodeploy-checkbox">
+            <p {{ action "dropboxAutodeployCheck" }} >
+              {{#if content.dropbox_autodeploy }}
+                <input type="checkbox" checked="checked" >
+              {{else}}
+                <input type="checkbox" >
+              {{/if}}
+              <span>Enable Auto-deployment</span>
+              <span style="margin-top:-12px;display: block;">Edit your dropbox files and changes will automatically trigger a re-deployment after 30 seconds</span>
+            </p>
+          </fieldset>
+        </div>
+      {{/if}}
+    {{/unless}}
+  {{/unless}}
+</div>

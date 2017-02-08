@@ -1,0 +1,13 @@
+<div id="deploy-with-dropbox">
+  <button class="dropbox large authorize" {{action 'deployFromDropbox'}}>Deploy from Dropbox</button>
+
+  {{#if isOwner}}
+    <p>
+      Your site is synced with 
+      {{#link-to 'site.settings' this classBinding=":dropbox-path"}}
+        {{formatDropboxPath dropbox_path}}
+      {{/link-to}} 
+      {{! Changes to sync: <strong>3 added</strong>, <strong>2 removed</strong>. }}
+    </p>
+  {{/if}}
+</div>

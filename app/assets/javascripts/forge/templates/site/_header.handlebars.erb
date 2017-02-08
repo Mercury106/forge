@@ -1,0 +1,11 @@
+<header>
+  
+  <h2 class="site">
+    {{#with url}}<a href="http://{{unbound this}}" target="_blank">{{this}}</a>{{/with}}
+    {{view App.FaviconSpanView contentBinding="this"}}
+  </h2>
+
+  {{view App.TabCollectionView contentBinding="tabs" siteBinding="this"}}
+  
+  <a class="show-sidebar no-mousedown" {{action 'toggleSidebar'}} id="show-sidebar">Show Sidebar</a>
+</header>
